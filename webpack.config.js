@@ -3,7 +3,7 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-// const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const EslingPlugin = require("eslint-webpack-plugin");
 
@@ -62,14 +62,18 @@ const baseConfig = {
       extensions: "ts",
     }),
     new CleanWebpackPlugin(),
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, "src/assets"),
-    //       to: path.resolve(__dirname, "dist/assets"),
-    //     },
-    //   ],
-    // }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "src/assets/img"),
+          to: path.resolve(__dirname, "dist/assets/img"),
+        },
+        {
+          from: path.resolve(__dirname, "src/assets/svg"),
+          to: path.resolve(__dirname, "dist/assets/svg"),
+        },
+      ],
+    }),
     new MiniCssExtractPlugin({
       filename: "style.css",
     }),
