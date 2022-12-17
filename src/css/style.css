@@ -24,9 +24,8 @@ head {
 }
 .main {
     width: 100%;
-    height: calc(100vh - 20vh); 
-    padding-left: 2%;
-    padding-right: 2%;
+    min-height: calc(100vh - 20vh); 
+    padding: 2%;
 }
 .logo__img {
     margin-top: 3px;
