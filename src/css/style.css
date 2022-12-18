@@ -25,7 +25,7 @@ head {
 .main {
     width: 100%;
     min-height: calc(100vh - 20vh); 
-    padding: 2%;
+    padding: 1%;
 }
 .logo__img {
     margin-top: 3px;
