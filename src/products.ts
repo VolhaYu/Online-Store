@@ -35,6 +35,36 @@ foundProduct.classList.add("found-product");
 foundProduct.textContent = "Found:100";
 sortProducts.appendChild(foundProduct);
 
+const wrapRadio = document.createElement("div");
+wrapRadio.classList.add("wrap-radio");
+sortProducts.append(wrapRadio);
+const labelRadio1 = document.createElement("label");
+labelRadio1.classList.add("label-radio", "label-radio_active");
+wrapRadio.append(labelRadio1);
+const labelImg1 = document.createElement("img");
+labelImg1.classList.add("label-radio__img");
+labelImg1.setAttribute("src", "./assets/svg/grid.svg");
+labelRadio1.append(labelImg1);
+const switchViewGrid = document.createElement("input");
+switchViewGrid.classList.add("switch-view", "switch-giew-grid");
+switchViewGrid.setAttribute("type", "radio");
+switchViewGrid.setAttribute("name", "switchView");
+switchViewGrid.setAttribute("checked", "");
+labelRadio1.append(switchViewGrid);
+
+const labelRadio2 = document.createElement("label");
+labelRadio2.classList.add("label-radio");
+wrapRadio.append(labelRadio2);
+const labelImg2 = document.createElement("img");
+labelImg2.classList.add("label-radio__img");
+labelImg2.setAttribute("src", "./assets/svg/row.svg");
+labelRadio2.append(labelImg2);
+const switchViewRow = document.createElement("input");
+switchViewRow.classList.add("switch-view", "switch-view-row");
+switchViewRow.setAttribute("type", "radio");
+switchViewRow.setAttribute("name", "switchView");
+labelRadio2.append(switchViewRow);
+
 const cardsProducts = document.createElement("div");
 cardsProducts.classList.add("cards-products");
 divProducts.appendChild(cardsProducts);

@@ -123,12 +123,34 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    padding: 0 1% 0;
 }
 .select {
     border-radius: 5px;
 }
 .found-product {
     margin: 10px 0;
+}
+.wrap-radio {
+    display: inline-block;
+}
+.switch-view {
+    display: none;
+}
+.wrap-radio label {
+    display: inline-block;
+	cursor: pointer;
+	padding: 0px 15px;
+	line-height: 34px;
+	border: 1px solid #f4eeee;
+    border-radius: 6px;
+	user-select: none;
+}
+.label-radio_active {
+    background-color: #f4eeee;
+}
+.label-radio__img {
+    margin-top: 10px;
 }
 .cards-products {
     display: grid;
