@@ -2,4 +2,5 @@ import "./css/style.css";
 import "./filtres";
 import "./products";
 import "./css/storePage.css";
-import "./test";
+import "./findData";
+// import "./productsData.ts";

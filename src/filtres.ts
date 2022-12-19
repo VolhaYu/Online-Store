@@ -1,3 +1,12 @@
+import {
+  categorySet,
+  brandSet,
+  priceMin,
+  priceMax,
+  stockMin,
+  stockMax,
+} from "./findData";
+
 const fragmentStorePage = document.createDocumentFragment();
 export const divStorePage = document.createElement("div");
 divStorePage.classList.add("store-page");
@@ -36,10 +45,10 @@ const wrapCheckbox = document.createElement("div");
 wrapCheckbox.classList.add("wrap-checkbox");
 categoryDiv.appendChild(wrapCheckbox);
 
-for (let i = 1; i <= 20; i++) {
+for (let i = 0; i < categorySet.size; i++) {
   const labelCheckbox = document.createElement("label");
   labelCheckbox.classList.add("label-checkbox");
-  labelCheckbox.textContent = "i";
+  labelCheckbox.textContent = `${Array.from(categorySet)[i]}`;
   const inputCheckbox = document.createElement("input");
   inputCheckbox.setAttribute("type", "checkbox");
   inputCheckbox.classList.add("checkbox");
@@ -56,10 +65,10 @@ brandDiv.appendChild(h2Brand);
 const wrapCheckboxBrand = document.createElement("div");
 wrapCheckboxBrand.classList.add("wrap-checkbox");
 brandDiv.appendChild(wrapCheckboxBrand);
-for (let i = 0; i <= 78; i++) {
+for (let i = 0; i < brandSet.size; i++) {
   const labelCheckbox = document.createElement("label");
   labelCheckbox.classList.add("label-checkbox");
-  labelCheckbox.textContent = "i";
+  labelCheckbox.textContent = `${Array.from(brandSet)[i]}`;
   const inputCheckbox = document.createElement("input");
   inputCheckbox.setAttribute("type", "checkbox");
   inputCheckbox.classList.add("checkbox");
@@ -78,11 +87,11 @@ wrapMinMaxPrice.classList.add("wrap-min-max");
 priceDiv.appendChild(wrapMinMaxPrice);
 const minPrice = document.createElement("div");
 minPrice.classList.add("min-price");
-minPrice.textContent = "$";
+minPrice.textContent = `$${priceMin}`;
 wrapMinMaxPrice.appendChild(minPrice);
 const maxPrice = document.createElement("div");
 maxPrice.classList.add("max-price");
-maxPrice.textContent = "$";
+maxPrice.textContent = `$${priceMax}`;
 wrapMinMaxPrice.appendChild(maxPrice);
 const rangeContainerPrice = document.createElement("div");
 rangeContainerPrice.classList.add("range-container");
@@ -114,11 +123,11 @@ wrapMinMaxStock.classList.add("wrap-min-max");
 stockDiv.appendChild(wrapMinMaxStock);
 const minStock = document.createElement("div");
 minStock.classList.add("min-stock");
-minStock.textContent = "0";
+minStock.textContent = `${stockMin}`;
 wrapMinMaxStock.appendChild(minStock);
 const maxStock = document.createElement("div");
 maxStock.classList.add("max-stock");
-maxStock.textContent = "0";
+maxStock.textContent = `${stockMax}`;
 wrapMinMaxStock.appendChild(maxStock);
 const rangeContainerStock = document.createElement("div");
 rangeContainerStock.classList.add("range-container");
