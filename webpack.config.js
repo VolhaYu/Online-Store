@@ -24,13 +24,8 @@ const baseConfig = {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
-      // {
-      //   test: /\.ts$/,
-      //   use: "ts-loader",
-      //   include: [path.resolve(__dirname, "src")],
-      // },
       {
-        test: /\.(tsx?|js?)$/,
+        test: /\.(ts?|js?)$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
@@ -47,11 +42,6 @@ const baseConfig = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
-    extensionAlias: {
-      ".js": [".js", ".ts"],
-      ".cjs": [".cjs", ".cts"],
-      ".mjs": [".mjs", ".mts"],
-    },
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -1,2 +1,6 @@
 import "./css/style.css";
-console.log("Hello World!");
+import "./filtres";
+import "./products";
+import "./css/storePage.css";
+import "./findData";
+// import "./productsData.ts";

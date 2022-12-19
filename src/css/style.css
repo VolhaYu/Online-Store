@@ -10,6 +10,9 @@ head {
     margin: 0;
     height: 100vh;
 }
+.header {
+    margin-bottom: 10px;
+}
 .header,
 .footer {
     width: 100%;
@@ -19,14 +22,12 @@ head {
     justify-content: space-between;
     padding-left: 2%;
     padding-right: 2%;
-    background-color: rgb(223, 219, 219);
-
+    background-color: rgb(228, 224, 224);
 }
 .main {
     width: 100%;
-    height: calc(100vh - 20vh); 
-    padding-left: 2%;
-    padding-right: 2%;
+    min-height: calc(100vh - 20vh); 
+    padding: 1%;
 }
 .logo__img {
     margin-top: 3px;
@@ -50,7 +51,7 @@ head {
     border-radius: 50%;
     background-color: grey;
     left: 70%;
-    top: 70%;
+    top: 67%;
     display: flex;
     align-items: center;
     justify-content: center;
