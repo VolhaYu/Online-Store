@@ -1,6 +1,9 @@
 import "./css/style.css";
-import "./filtres";
-import "./products";
-import "./css/storePage.css";
+import "./StorePage/filtres";
+import "./StorePage/products";
+import "./StorePage/storePage.css";
 import "./findData";
-// import "./productsData.ts";
+import "./productsData";
+import "./CartPage/cartPage";
+import "./pageSwitching";
+import "./descriptionPage/productDescription";

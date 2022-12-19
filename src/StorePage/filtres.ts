@@ -5,7 +5,7 @@ import {
   priceMax,
   stockMin,
   stockMax,
-} from "./findData";
+} from "../findData";
 
 const fragmentStorePage = document.createDocumentFragment();
 export const divStorePage = document.createElement("div");

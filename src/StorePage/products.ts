@@ -1,6 +1,6 @@
 import { divStorePage } from "./filtres";
-import { products } from "./productsData";
-import { price, title } from "./findData";
+import { products } from "../productsData";
+import { price, title } from "../findData";
 
 const divProducts = document.createElement("div");
 divProducts.classList.add("products");
