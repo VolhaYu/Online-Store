@@ -76,6 +76,7 @@ for (let i = 0; i < products.length; i++) {
   cardsProducts.appendChild(cardProduct);
   const productImg = document.createElement("div");
   productImg.classList.add("product__img");
+  productImg.setAttribute("id", `${products[i].id}`);
   productImg.style.backgroundImage = `url(${products[i].thumbnail})`;
   cardProduct.appendChild(productImg);
   const productDescription = document.createElement("div");
