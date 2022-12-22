@@ -11,7 +11,7 @@ fragmentDescriptiontPage.appendChild(divDescriptiontPage);
 
 const titleDescription = document.createElement("h2");
 titleDescription.classList.add("title-description");
-titleDescription.textContent = "Title";
+// titleDescription.textContent = "Title";
 divDescriptiontPage.appendChild(titleDescription);
 
 const wrapDescription = document.createElement("div");

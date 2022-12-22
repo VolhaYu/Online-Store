@@ -203,3 +203,6 @@
     text-align: center;
     cursor: pointer;
 }
+.button-to-cart-active {
+    background: #cfc9b7;
+}
