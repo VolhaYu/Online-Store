@@ -1,8 +1,7 @@
 import "./description.css";
-// import { imgClick } from "../pageSwitching";
 import { products } from "../productsData";
 import { divStorePage } from "../StorePage/filtres";
-// console.log(imgClick);
+import { getCartCounterDescription, buttunToCart } from "../header";
 
 const fragmentDescriptiontPage = document.createDocumentFragment();
 export const divDescriptiontPage = document.createElement("div");
@@ -11,7 +10,6 @@ fragmentDescriptiontPage.appendChild(divDescriptiontPage);
 
 const titleDescription = document.createElement("h2");
 titleDescription.classList.add("title-description");
-// titleDescription.textContent = "Title";
 divDescriptiontPage.appendChild(titleDescription);
 
 const wrapDescription = document.createElement("div");
@@ -29,6 +27,10 @@ wrapDescriptionImage.appendChild(mainPhoto);
 export const wrapSlideImage = document.createElement("div");
 wrapSlideImage.classList.add("wrap-slide-image");
 wrapDescriptionImage.appendChild(wrapSlideImage);
+
+// const slideImage = document.createElement("img");
+// slideImage.classList.add("slide-img");
+// wrapSlideImage.appendChild(slideImage);
 
 const wrapProductInfo = document.createElement("div");
 wrapProductInfo.classList.add("wrap-description__product-info");
@@ -57,25 +59,34 @@ const infoCategory = document.createElement("p");
 infoCategory.classList.add("product-info__p");
 wrapProductInfo.appendChild(infoCategory);
 
-const addToCard = document.createElement("div");
-addToCard.classList.add("wrap-description__add-to-card");
-wrapDescription.appendChild(addToCard);
+const addToCart = document.createElement("div");
+addToCart.classList.add("wrap-description__add-to-cart");
+wrapDescription.appendChild(addToCart);
 
 const priceInfo = document.createElement("p");
 priceInfo.classList.add("price-info");
-addToCard.appendChild(priceInfo);
+addToCart.appendChild(priceInfo);
 
-const addToCardButton = document.createElement("button");
-addToCardButton.classList.add("add-to-card__button");
-addToCardButton.textContent = "Add to cart";
-addToCard.appendChild(addToCardButton);
+export const addToCartButton = document.createElement("button");
+addToCartButton.classList.add("add-to-cart__button");
+addToCartButton.textContent = "add to cart";
+addToCart.appendChild(addToCartButton);
 
 const buyNowButton = document.createElement("button");
-buyNowButton.classList.add("add-to-card__button");
+buyNowButton.classList.add("add-to-cart__button");
 buyNowButton.textContent = "Buy Now";
-addToCard.appendChild(buyNowButton);
+addToCart.appendChild(buyNowButton);
 
 export const imgClick = document.querySelectorAll(".product__img");
+
+function getSliderImage(n: number) {
+  for (let j = 1; j < products[n].images.length; j++) {
+    const slideImage = document.createElement("img");
+    slideImage.classList.add("slide-img");
+    slideImage.src = products[n].images[j];
+    wrapSlideImage.appendChild(slideImage);
+  }
+}
 
 function getProductInfo() {
   for (let i = 0; i < imgClick.length; i++) {
@@ -89,14 +100,15 @@ function getProductInfo() {
       infoBrand.textContent = `Brand: ${products[i].brand}`;
       infoCategory.textContent = `Category: ${products[i].category}`;
       priceInfo.textContent = `$${products[i].price}`;
-      for (let j = 0; j < products[i].images.length; j++) {
-        const slideImage = document.createElement("img");
-        slideImage.classList.add("slide-img");
-        slideImage.src = products[i].images[j];
-        wrapSlideImage.appendChild(slideImage);
+      addToCartButton.textContent = buttunToCart[i].textContent;
+      getSliderImage(i);
+      if (buttunToCart[i].textContent === "in cart") {
+        addToCartButton.classList.add("button-to-cart-active");
       }
+      getCartCounterDescription(i);
       document.querySelector("main")?.removeChild(divStorePage);
       document.querySelector("main")?.appendChild(divDescriptiontPage);
+      return products[i];
     });
   }
 }

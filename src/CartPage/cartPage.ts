@@ -1,19 +1,19 @@
 import "./cartPage.css";
 import { products } from "../productsData";
-import { divStorePage } from "../StorePage/filtres";
-import { divDescriptiontPage } from "../descriptionPage/productDescription";
+// import { divStorePage } from "../StorePage/filtres";
+// import { divDescriptiontPage } from "../descriptionPage/productDescription";
 
 const fragmentCartPage = document.createDocumentFragment();
 export const divCartPage = document.createElement("div");
 divCartPage.classList.add("cart-page");
 fragmentCartPage.appendChild(divCartPage);
 
-const emptyCart = document.createElement("h1");
+export const emptyCart = document.createElement("h1");
 emptyCart.classList.add("h1");
 emptyCart.textContent = "Cart is Empty!";
 divCartPage.appendChild(emptyCart);
 
-const cartWrapper = document.createElement("div");
+export const cartWrapper = document.createElement("div");
 cartWrapper.classList.add("cart-wrapper");
 // divCartPage.appendChild(cartWrapper);
 
@@ -109,33 +109,7 @@ buttonBuy.classList.add("button-buy");
 buttonBuy.textContent = "buy now";
 totalSum.appendChild(buttonBuy);
 
-const buttunToCart = document.querySelectorAll(".button-to-cart");
-const cartCounter = document.querySelector(".shoping-cart__number")!;
-let counter = 0;
-function showCart() {
-  for (let i = 0; i < buttunToCart.length; i++) {
-    buttunToCart[i].addEventListener("click", () => {
-      emptyCart.style.display = "none";
-      divCartPage.appendChild(cartWrapper);
-      buttunToCart[i].classList.toggle("button-to-cart-active");
-      showInCart(i);
-      if (buttunToCart[i].textContent === "add to cart") {
-        buttunToCart[i].textContent = "in cart";
-        counter = counter + 1;
-      } else {
-        buttunToCart[i].textContent = "add to cart";
-        counter = counter - 1;
-      }
-      cartCounter.textContent = `${counter}`;
-      console.log(counter);
-      return counter;
-    });
-  }
-}
-showCart();
-console.log(counter);
-
-function showInCart(n: number) {
+export function showInCart(n: number) {
   inCartPhoto.src = products[n].thumbnail;
   inCartTitle.textContent = products[n].title;
   inCartInfo.textContent = products[n].description;
@@ -144,18 +118,3 @@ function showInCart(n: number) {
   inCartPrice.textContent = `Price: $${products[n].price}`;
   // cartWrapper.appendChild(inCart);
 }
-function switchCartPage() {
-  document.querySelector(".shoping-cart")?.addEventListener("click", () => {
-    document.querySelector("main")?.removeChild(divStorePage) ||
-      document.querySelector("main")?.removeChild(divDescriptiontPage);
-    document.querySelector("main")?.appendChild(divCartPage);
-  });
-  // if (counter === 0) {
-  //   divCartPage.appendChild(emptyCart);
-  // } else {
-  //   divCartPage.appendChild(cartWrapper);
-  // }
-  // showCart();
-}
-switchCartPage();
-// document.querySelector("main")?.appendChild(fragmentCartPage);

@@ -70,33 +70,35 @@ labelRadio2.append(switchViewRow);
 const cardsProducts = document.createElement("div");
 cardsProducts.classList.add("cards-products");
 divProducts.appendChild(cardsProducts);
-for (let i = 0; i < products.length; i++) {
-  const cardProduct = document.createElement("div");
-  cardProduct.classList.add("card-product");
-  cardsProducts.appendChild(cardProduct);
-  const productImg = document.createElement("div");
-  productImg.classList.add("product__img");
-  productImg.setAttribute("id", `${products[i].id}`);
-  productImg.style.backgroundImage = `url(${products[i].thumbnail})`;
-  cardProduct.appendChild(productImg);
-  const productDescription = document.createElement("div");
-  productDescription.classList.add("product__description");
-  cardProduct.appendChild(productDescription);
 
-  const titleProduct = document.createElement("h4");
-  titleProduct.classList.add("product__title");
-  titleProduct.textContent = `${title[i]}`;
-  productDescription.append(titleProduct);
-
-  const wrapPriceButton = document.createElement("div");
-  wrapPriceButton.classList.add("wrap-price-button");
-  productDescription.append(wrapPriceButton);
-  const priceProduct = document.createElement("p");
-  priceProduct.classList.add("product__price");
-  priceProduct.textContent = `$${price[i]}`;
-  wrapPriceButton.append(priceProduct);
-  const buttonToCart = document.createElement("button");
-  buttonToCart.classList.add("button-to-cart");
-  buttonToCart.textContent = "add to cart";
-  wrapPriceButton.append(buttonToCart);
+export function getProductsCard() {
+  for (let i = 0; i < products.length; i++) {
+    const cardProduct = document.createElement("div");
+    cardProduct.classList.add("card-product");
+    cardsProducts.appendChild(cardProduct);
+    const productImg = document.createElement("div");
+    productImg.classList.add("product__img");
+    productImg.setAttribute("id", `${products[i].id}`);
+    productImg.style.backgroundImage = `url(${products[i].thumbnail})`;
+    cardProduct.appendChild(productImg);
+    const productDescription = document.createElement("div");
+    productDescription.classList.add("product__description");
+    cardProduct.appendChild(productDescription);
+    const titleProduct = document.createElement("h4");
+    titleProduct.classList.add("product__title");
+    titleProduct.textContent = `${title[i]}`;
+    productDescription.append(titleProduct);
+    const wrapPriceButton = document.createElement("div");
+    wrapPriceButton.classList.add("wrap-price-button");
+    productDescription.append(wrapPriceButton);
+    const priceProduct = document.createElement("p");
+    priceProduct.classList.add("product__price");
+    priceProduct.textContent = `$${price[i]}`;
+    wrapPriceButton.append(priceProduct);
+    const buttonToCart = document.createElement("button");
+    buttonToCart.classList.add("button-to-cart");
+    buttonToCart.textContent = "add to cart";
+    wrapPriceButton.append(buttonToCart);
+  }
 }
+getProductsCard();
