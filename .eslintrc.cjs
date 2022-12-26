@@ -21,19 +21,25 @@ module.exports = {
   plugins: ["@typescript-eslint", "prettier"],
 
   rules: {
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     "no-debugger": "off",
     "no-console": 0,
     "class-methods-use-this": "off",
     indent: ["error", 2],
     semi: ["error", "always"],
     quotes: ["error", "double"],
-    "linebreak-style": ["error", "unix"],
+    // "linebreak-style": ["error", "unix"],
     "no-multi-spaces": "error",
     "space-in-parens": "error",
     "no-multiple-empty-lines": "error",
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-explicit-any": "warn",
     "for-direction": "off",
-    "prettier/prettier": "error",
+    // "prettier/prettier": "error",
   },
 };

@@ -37,14 +37,14 @@ head {
     font-size: 20px;
     font-weight: 500;
 }
-.shoping-card {
+.shoping-cart {
     position: relative;
     cursor: pointer;
 }
-.shoping-card__img {
+.shoping-cart__img {
     width: 8vh;
 }
-.shoping-card__number {
+.shoping-cart__number {
     position: absolute;
     width: 25px;
     height: 25px;

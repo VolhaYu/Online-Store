@@ -2,7 +2,7 @@
   "name": "online-store",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.base.config.js",
+  "main": "index.ts",
   "scripts": {
       "start": "webpack serve --open --config ./webpack.config.js --env mode=dev",
       "build": "webpack --config ./webpack.config.js --env mode=prod",
