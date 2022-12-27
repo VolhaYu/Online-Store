@@ -185,6 +185,9 @@
 .product__description {
     padding: 5px 10px;
 }
+.product__info {
+    display: none;
+}
 .wrap-price-button {
     display: flex;
     justify-content: space-between;
@@ -205,4 +208,26 @@
 }
 .button-to-cart-active {
     background: #cfc9b7;
+}
+.cards-products_inLine {
+    display: block;
+}
+.card-product_inLine {
+    flex-direction: row;
+    justify-content: space-between;
+    height: auto;
+    margin-bottom: 10px;
+}
+.product__img_inLine {
+    height: auto;
+    width: 35%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.product__description_inLine {
+    width: 64%;
+}
+.product__info_inline {
+    display: block;
 }

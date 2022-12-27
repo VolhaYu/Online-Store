@@ -48,7 +48,7 @@ labelImg1.classList.add("label-radio__img");
 labelImg1.setAttribute("src", "./assets/svg/grid.svg");
 labelRadio1.append(labelImg1);
 const switchViewGrid = document.createElement("input");
-switchViewGrid.classList.add("switch-view", "switch-giew-grid");
+switchViewGrid.classList.add("switch-view", "switch-view-grid");
 switchViewGrid.setAttribute("type", "radio");
 switchViewGrid.setAttribute("name", "switchView");
 switchViewGrid.setAttribute("checked", "");
@@ -88,6 +88,10 @@ export function getProductsCard() {
     titleProduct.classList.add("product__title");
     titleProduct.textContent = `${title[i]}`;
     productDescription.append(titleProduct);
+    const infoProduct = document.createElement("p");
+    infoProduct.classList.add("product__info");
+    infoProduct.textContent = `${products[i].description}`;
+    productDescription.append(infoProduct);
     const wrapPriceButton = document.createElement("div");
     wrapPriceButton.classList.add("wrap-price-button");
     productDescription.append(wrapPriceButton);
@@ -102,3 +106,35 @@ export function getProductsCard() {
   }
 }
 getProductsCard();
+
+// const radioSwichView = document.querySelectorAll(".switch-view");
+const cardProduct = document.querySelectorAll(".card-product");
+const productImg = document.querySelectorAll(".product__img");
+const productDescription = document.querySelectorAll(".product__description");
+const infoProduct = document.querySelectorAll(".product__info");
+
+function switchView() {
+  switchViewRow.addEventListener("click", () => {
+    labelRadio1.classList.remove("label-radio_active");
+    labelRadio2.classList.add("label-radio_active");
+    cardsProducts.classList.add("cards-products_inLine");
+    for (let i = 0; i < cardProduct.length; i++) {
+      cardProduct[i].classList.add("card-product_inLine");
+      productImg[i].classList.add("product__img_inLine");
+      productDescription[i].classList.add("product__description_inLine");
+      infoProduct[i].classList.add("product__info_inline");
+    }
+  });
+  switchViewGrid.addEventListener("click", () => {
+    labelRadio1.classList.add("label-radio_active");
+    labelRadio2.classList.remove("label-radio_active");
+    cardsProducts.classList.remove("cards-products_inLine");
+    for (let i = 0; i < cardProduct.length; i++) {
+      cardProduct[i].classList.remove("card-product_inLine");
+      productImg[i].classList.remove("product__img_inLine");
+      productDescription[i].classList.remove("product__description_inLine");
+      infoProduct[i].classList.remove("product__info_inline");
+    }
+  });
+}
+switchView();
