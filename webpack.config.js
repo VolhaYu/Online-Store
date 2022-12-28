@@ -12,7 +12,7 @@ const baseConfig = {
   mode: "development",
   devtool: "inline-source-map",
   output: {
-    filename: "index.js",
+    filename: "dist.js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -28,8 +28,8 @@ const baseConfig = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         use: ["babel-loader"],
+        exclude: /node_modules/,
       },
       {
         test: /\.(?:ico|gif|svg|png|jpg|jpeg)$/i,
