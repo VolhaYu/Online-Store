@@ -1,18 +1,22 @@
 * {
     box-sizing: border-box;
 }
+
 head {
     font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 400;
 }
+
 .body {
     margin: 0;
     height: 100vh;
 }
+
 .header {
     margin-bottom: 10px;
 }
+
 .header,
 .footer {
     width: 100%;
@@ -24,26 +28,32 @@ head {
     padding-right: 2%;
     background-color: rgb(228, 224, 224);
 }
+
 .main {
     width: 100%;
     min-height: calc(100vh - 20vh); 
     padding: 1%;
 }
+
 .logo__img {
     margin-top: 3px;
     width: 10vh;
 }
+
 .header__p {
     font-size: 20px;
     font-weight: 500;
 }
+
 .shoping-cart {
     position: relative;
     cursor: pointer;
 }
+
 .shoping-cart__img {
     width: 8vh;
 }
+
 .shoping-cart__number {
     position: absolute;
     width: 25px;
@@ -57,9 +67,11 @@ head {
     justify-content: center;
     color: white;
 }
+
 .github__img {
     margin-top: 5px;
 }
+
 .github__img,
 .link-rsschool__img {
     width: 15vh;
