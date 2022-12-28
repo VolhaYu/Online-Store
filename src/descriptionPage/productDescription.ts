@@ -1,5 +1,5 @@
 import "./description.css";
-import { products } from "../productsData";
+import { products } from "../assets/data/productsData";
 import { divStorePage } from "../StorePage/filtres";
 import { getCartCounterDescription, buttunToCart } from "../header";
 

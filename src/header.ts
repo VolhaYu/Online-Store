@@ -1,24 +1,15 @@
-import {
-  emptyCart,
-  divCartPage,
-  cartWrapper,
-  showInCart,
-} from "./CartPage/cartPage";
-import { products } from "./productsData";
-import {
-  addToCartButton,
-  divDescriptiontPage,
-} from "./descriptionPage/productDescription";
+import { emptyCart, divCartPage, cartWrapper, showInCart } from "./CartPage/cartPage";
+import { products } from "./assets/data/productsData";
+import { addToCartButton, divDescriptiontPage } from "./descriptionPage/productDescription";
 
 export const buttunToCart = document.querySelectorAll(".button-to-cart");
 // console.log(buttunToCart);
-const cartCounter = document.querySelector(
-  ".shoping-cart__number"
-) as HTMLElement;
+const cartCounter = document.querySelector(".shoping-cart__number") as HTMLElement;
 const headerTotal = document.querySelector(".header__p") as HTMLElement;
 let counter = 0;
 let totalCounter = 0;
-function getCartCounter() {
+
+(function getCartCounter() {
   for (let i = 0; i < buttunToCart.length; i++) {
     buttunToCart[i].addEventListener("click", () => {
       emptyCart.style.display = "none";
@@ -40,8 +31,7 @@ function getCartCounter() {
       // return counter;
     });
   }
-}
-getCartCounter();
+})()
 
 export function getCartCounterDescription(n: number) {
   if (document.querySelector("main")?.appendChild(divDescriptiontPage)) {

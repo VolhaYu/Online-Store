@@ -1,11 +1,4 @@
-import {
-  categorySet,
-  brandSet,
-  priceMin,
-  priceMax,
-  stockMin,
-  stockMax,
-} from "../findData";
+import { categorySet, brandSet, priceMin, priceMax, stockMin, stockMax } from "../findData";
 
 const fragmentStorePage = document.createDocumentFragment();
 export const divStorePage = document.createElement("div");

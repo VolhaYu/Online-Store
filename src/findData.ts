@@ -1,4 +1,4 @@
-import { products } from "./productsData";
+import { products } from "./_productsData";
 
 // interface Product {
 //   id: number;

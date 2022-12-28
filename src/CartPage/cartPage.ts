@@ -1,5 +1,5 @@
 import "./cartPage.css";
-import { products } from "../productsData";
+import { products } from "../assets/data/productsData";
 // import { divStorePage } from "../StorePage/filtres";
 // import { divDescriptiontPage } from "../descriptionPage/productDescription";
 
