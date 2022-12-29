@@ -67,7 +67,7 @@ div.appendChild(totally);
 
 div.appendChild(document.createElement("br"));
 document.body.appendChild(fragment);
-
+// paymentCash.innerHTML = `<input type="radio" name="payment" value="Cash" /> Cash`;
 /*
 <!--
     <header class="header">
