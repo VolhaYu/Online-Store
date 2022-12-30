@@ -7,46 +7,59 @@ const header = document.createElement("HEADER");
 header.setAttribute("class", "header");
 fragment.appendChild(header);
 
-const wrapper = document.createElement("div");
-wrapper.setAttribute("class", "wrapper");
-header.appendChild(wrapper);
+const logo = document.createElement("A");
+logo.setAttribute("class", "logo");
+logo.setAttribute("href", "#");
+logo.innerHTML = `<img class="logo__img"src="assets/img/logo.png" alt="logo">`;
+header.appendChild(logo);
 
-const title = document.createElement("H1");
-title.setAttribute("class", "title");
-wrapper.appendChild(title);
+const title = document.createElement("P");
+title.setAttribute("class", "header__p");
+title.innerText = `Grand total: ${total}`;
+header.appendChild(title);
 
-const text = document.createTextNode("Online Store");
-title.appendChild(text);
+const shopingCartFragment = document.createElement("div");
+shopingCartFragment.setAttribute("class", "shoping-cart");
+shopingCartFragment.innerHTML = `<img class="shoping-cart__img" src="assets/img/shopping-cart.png" alt="shopping-cart"> <div class="shoping-cart__number">0</div>`;
+header.appendChild(shopingCartFragment)
 
 const main = document.createElement("main");
 main.setAttribute("class", "main");
 fragment.appendChild(main);
 
-const mainWrapper = document.createElement("div");
-mainWrapper.setAttribute("class", "wrapper");
-main.appendChild(mainWrapper);
+const footer = document.createElement("FOOTER");
+footer.setAttribute("class", "footer");
+fragment.appendChild(footer);
 
+const github = document.createElement("A");
+github.setAttribute("class", "github");
+github.setAttribute("href", "https://github.com/sesychev");
+github.setAttribute("target", "_blank");
+github.innerHTML = `<img class="github__img" src="assets/img/GitHub.png" alt="GitHub">`;
+footer.appendChild(github);
+
+const year = document.createElement("P");
+year.setAttribute("class", "year");
+year.innerText = `2022`;
+footer.appendChild(year);
+
+const link = document.createElement("A");
+link.setAttribute("github", "logo");
+link.setAttribute("href", "https://rs.school/js/");
+link.setAttribute("target", "_blank");
+link.innerHTML = `<img class="github__img" src="assets/svg/rs_school_js.svg" alt="rs_school_js">`;
+footer.appendChild(link);
+
+/*
 const mainOrders = document.createElement("H2");
 mainOrders.innerText = "Book Catalog";
 mainOrders.setAttribute("class", "title");
-mainWrapper.appendChild(mainOrders);
+main.appendChild(mainOrders);
 
 const frame = document.createElement("div");
 frame.setAttribute("class", "frame");
-mainWrapper.appendChild(frame);
+main.appendChild(frame);
 header.appendChild(mainOrders);
-
-const section = document.createElement("aside");
-section.setAttribute("class", "section droppable");
-fragment.appendChild(section);
-
-const footer = document.createElement("FOOTER");
-footer.setAttribute("class", "footer");
-footer.appendChild(mainOrders);
-fragment.appendChild(footer);
-
-const div = document.createElement("div");
-section.appendChild(div);
 
 const titleOrders = document.createElement("H2");
 titleOrders.innerText = "Oder books";
@@ -58,14 +71,22 @@ confirmOrders.setAttribute("class", "bag");
 confirmOrders.innerText = `Confirm oder`;
 div.appendChild(confirmOrders);
 
+const section = document.createElement("aside");
+section.setAttribute("class", "section");
+fragment.appendChild(section);
+
+const div = document.createElement("div");
+section.appendChild(div);
 div.appendChild(document.createElement("br"));
 
 const totally = document.createElement("H2");
-totally.innerText = `Total: $${total}`;
 totally.setAttribute("class", "total");
+totally.innerText = `Total: $${total}`;
 div.appendChild(totally);
 
 div.appendChild(document.createElement("br"));
+*/
+
 document.body.appendChild(fragment);
 // paymentCash.innerHTML = `<input type="radio" name="payment" value="Cash" /> Cash`;
 /*

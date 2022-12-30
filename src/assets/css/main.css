@@ -9,7 +9,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header"
@@ -36,19 +36,16 @@ title {
 
 .header {
   grid-area: header;
-
   /*background-color:blanchedalmond;*/
 }
 
 .main {
   grid-area: main;
-
   background-color:rgb(229, 220, 255);
 }
 
-.section {
+.filters {
   grid-area: side;
-
   background-color:cornsilk;
 }
 
@@ -132,3 +129,20 @@ title {
 .link-rsschool__img {
     width: 15vh;
 }
+
+@media (max-width: 640px) {
+
+  body {
+    grid-template-areas:
+      "header"
+      "side"
+      "main"
+      "footer";
+  }
+
+  .store-page {
+    flex-direction: column;
+  }
+  
+}
+/*# sourceMappingURL=quiz.css.map */
