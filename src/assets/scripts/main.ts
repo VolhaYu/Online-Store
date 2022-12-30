@@ -4,24 +4,28 @@ const fragment = document.createDocumentFragment();
 document.body.appendChild(fragment);
 
 const header = document.createElement("HEADER");
-header.setAttribute("class", "header");
+header.setAttribute("class", "");
 fragment.appendChild(header);
+
+const frame = document.createElement("div");
+frame.setAttribute("class", "header");
+header.appendChild(frame);
 
 const logo = document.createElement("A");
 logo.setAttribute("class", "logo");
 logo.setAttribute("href", "#");
 logo.innerHTML = `<img class="logo__img"src="assets/img/logo.png" alt="logo">`;
-header.appendChild(logo);
+frame.appendChild(logo);
 
 const title = document.createElement("P");
 title.setAttribute("class", "header__p");
-title.innerText = `Grand total: ${total}`;
-header.appendChild(title);
+title.innerText = `Grand total: $ ${total}`;
+frame.appendChild(title);
 
 const shopingCartFragment = document.createElement("div");
 shopingCartFragment.setAttribute("class", "shoping-cart");
 shopingCartFragment.innerHTML = `<img class="shoping-cart__img" src="assets/img/shopping-cart.png" alt="shopping-cart"> <div class="shoping-cart__number">0</div>`;
-header.appendChild(shopingCartFragment)
+frame.appendChild(shopingCartFragment)
 
 const main = document.createElement("main");
 main.setAttribute("class", "main");

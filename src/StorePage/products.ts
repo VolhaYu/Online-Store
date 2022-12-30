@@ -101,7 +101,7 @@ export function getProductsCard() {
     wrapPriceButton.append(priceProduct);
     const buttonToCart = document.createElement("button");
     buttonToCart.classList.add("button-to-cart");
-    buttonToCart.textContent = "add to cart";
+    buttonToCart.textContent = "Add to cart";
     wrapPriceButton.append(buttonToCart);
   }
 }
