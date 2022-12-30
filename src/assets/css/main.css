@@ -140,7 +140,7 @@ footer {
     width: 15vh;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 640px) {
 
   body {
     grid-template-areas:
