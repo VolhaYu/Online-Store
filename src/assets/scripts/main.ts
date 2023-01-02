@@ -35,12 +35,24 @@ const footer = document.createElement("FOOTER");
 footer.setAttribute("class", "footer");
 fragment.appendChild(footer);
 
-const github = document.createElement("A");
-github.setAttribute("class", "github");
-github.setAttribute("href", "https://github.com/sesychev");
-github.setAttribute("target", "_blank");
-github.innerHTML = `<img class="github__img" src="assets/img/GitHub.png" alt="GitHub">`;
-footer.appendChild(github);
+
+const usersGithub = document.createElement('div');
+usersGithub.setAttribute("class", "users-github");
+footer.appendChild(usersGithub);
+
+const github1 = document.createElement("A");
+github1.setAttribute("class", "github");
+github1.setAttribute("href", "https://github.com/sesychev");
+github1.setAttribute("target", "_blank");
+github1.innerHTML = `<img class="github__img" src="assets/img/GitHub.png" alt="GitHub">`;
+usersGithub.appendChild(github1);
+
+const github2 = document.createElement("A");
+github2.setAttribute("class", "github");
+github2.setAttribute("href", "https://github.com/VolhaYu");
+github2.setAttribute("target", "_blank");
+github2.innerHTML = `<img class="github__img" src="assets/img/GitHub.png" alt="GitHub">`;
+usersGithub.appendChild(github2);
 
 const year = document.createElement("P");
 year.setAttribute("class", "year");
@@ -51,7 +63,7 @@ const link = document.createElement("A");
 link.setAttribute("github", "logo");
 link.setAttribute("href", "https://rs.school/js/");
 link.setAttribute("target", "_blank");
-link.innerHTML = `<img class="github__img" src="assets/svg/rs_school_js.svg" alt="rs_school_js">`;
+link.innerHTML = `<img class="link-rsschool__img" src="assets/svg/rs_school_js.svg" alt="rs_school_js">`;
 footer.appendChild(link);
 
 /*

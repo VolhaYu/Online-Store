@@ -27,8 +27,6 @@ let totalCounter = 0;
       }
       cartCounter.textContent = `${counter}`;
       headerTotal.textContent = `Grand total: $${totalCounter}`;
-      console.log(counter);
-      // return counter;
     });
   }
 })()
@@ -50,6 +48,7 @@ export function getCartCounterDescription(n: number) {
       buttunToCart[n].classList.toggle("button-to-cart-active");
       cartCounter.textContent = `${counter}`;
       headerTotal.textContent = `Grand total: $${totalCounter}`;
+      return addToCartButton;
     });
   }
 }

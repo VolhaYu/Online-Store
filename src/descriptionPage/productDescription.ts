@@ -68,7 +68,7 @@ priceInfo.classList.add("price-info");
 addToCart.appendChild(priceInfo);
 
 export const addToCartButton = document.createElement("button");
-addToCartButton.classList.add("add-to-cart__button");
+addToCartButton.classList.add("button-to-cart", "add-to-cart__button");
 addToCartButton.textContent = "add to cart";
 addToCart.appendChild(addToCartButton);
 

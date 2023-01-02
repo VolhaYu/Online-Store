@@ -15,11 +15,10 @@ body {
     "header header"
     "side main"
     "footer footer";
-  background-color: rgb(228, 224, 224);
 }
 
-.title { 
-	color: red; 
+.title {
+  color: red;
   font: 12px tahoma;
 }
 
@@ -44,17 +43,14 @@ footer {
 .header {
   grid-area: header;
   border-radius: 8px;
-  /*background-color:blanchedalmond;*/
 }
 
 .main {
   grid-area: main;
-  background-color:rgb(229, 220, 255);
 }
 
 .filters {
   grid-area: side;
-  background-color:cornsilk;
 }
 
 .section div {
@@ -65,8 +61,6 @@ footer {
 
 .frame {
   display: flex;
-    /* margin: auto; */
-    /* justify-content: center; */
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
@@ -81,78 +75,64 @@ footer {
 
 .body {
   height: 100vh;
-    /*margin: 0;
-    height: 100vh;*/
 }
 
 .header,
 .footer {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1%;
-    border: 1px solid transparent;
-    box-shadow: 0px 1px 2px rgb(58 58 68 / 24%), 0px 2px 4px rgb(90 91 106 / 24%);
-    border-radius: 8px;
-    transition: border 0.25s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1%;
+  border: 1px solid transparent;
+  box-shadow: 0px 1px 2px rgb(58 58 68 / 24%), 0px 2px 4px rgb(90 91 106 / 24%);
+  border-radius: 8px;
+  transition: border 0.25s;
+  background-color: rgb(228, 224, 224);
 }
 
 .logo__img {
-    margin-top: 3px;
-    width: 10vh;
+  margin-top: 3px;
+  width: 10vh;
 }
 
 .header__p {
-    font-size: 20px;
-    font-weight: 500;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .shoping-cart {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
 
 .shoping-cart__img {
-    width: 8vh;
+  width: 8vh;
 }
 
 .shoping-cart__number {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: grey;
-    left: 70%;
-    top: 67%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: grey;
+  left: 70%;
+  top: 67%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .github__img {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
-.github__img,
 .link-rsschool__img {
-    width: 15vh;
+  width: 15vh;
 }
 
-@media (max-width: 640px) {
-
-  body {
-    grid-template-areas:
-      "header"
-      "side"
-      "main"
-      "footer";
-  }
-
-  .store-page {
-    flex-direction: column;
-  }
-  
+.github__img {
+  width: 10vh;
 }
 /*# sourceMappingURL=quiz.css.map */
