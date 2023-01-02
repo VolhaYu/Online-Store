@@ -35,6 +35,7 @@ const footer = document.createElement("FOOTER");
 footer.setAttribute("class", "footer");
 fragment.appendChild(footer);
 
+
 const usersGithub = document.createElement('div');
 usersGithub.setAttribute("class", "users-github");
 footer.appendChild(usersGithub);

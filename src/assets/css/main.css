@@ -1,9 +1,9 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
 }
 
 body {
@@ -75,8 +75,6 @@ footer {
 
 .body {
   height: 100vh;
-  /*margin: 0;
-    height: 100vh;*/
 }
 
 .header,
@@ -137,5 +135,4 @@ footer {
 .github__img {
   width: 10vh;
 }
-
 /*# sourceMappingURL=quiz.css.map */
