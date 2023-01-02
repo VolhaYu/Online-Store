@@ -3,17 +3,16 @@ const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const EslingPlugin = require("eslint-webpack-plugin");
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // for what?
+const EslingPlugin = require("eslint-webpack-plugin"); // for what?
+
 const baseConfig = {
-  context: path.resolve(__dirname, "src"),
+  entry: path.resolve(__dirname, "./src/index.ts"),
   mode: "development",
-  entry: {
-    main: "./index.ts",
-  },
   devtool: "inline-source-map",
   output: {
-    filename: "bundle.js",
+    filename: "dist.js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -29,8 +28,8 @@ const baseConfig = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         use: ["babel-loader"],
+        exclude: /node_modules/,
       },
       {
         test: /\.(?:ico|gif|svg|png|jpg|jpeg)$/i,
@@ -43,36 +42,42 @@ const baseConfig = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: path.resolve(__dirname, "./src/assets/img/logo.png"),
       template: path.resolve(__dirname, "./src/index.html"),
       filename: "index.html",
-    }),
-    new EslingPlugin({
-      extensions: "ts",
     }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "src/assets/img"),
-          to: path.resolve(__dirname, "dist/assets/img"),
+          from: path.resolve(__dirname, "src", "assets", "img"),
+          to: path.resolve(__dirname, "dist", "assets", "img"),
         },
         {
-          from: path.resolve(__dirname, "src/assets/svg"),
-          to: path.resolve(__dirname, "dist/assets/svg"),
+          from: path.resolve(__dirname, "src", "assets", "svg"),
+          to: path.resolve(__dirname, "dist", "assets", "svg"),
+        },
+        {
+          from: path.resolve(__dirname, "src", "assets", "data"),
+          to: path.resolve(__dirname, "dist", "assets", "data"),
         },
       ],
     }),
     new MiniCssExtractPlugin({
       filename: "style.css",
     }),
+    new EslingPlugin({
+      extensions: "ts",
+    }),
   ],
 };
 
+const prod = require("./webpack.prod.config"); //
+const dev = require("./webpack.dev.config"); //
+
 module.exports = ({ mode }) => {
   const isProductionMode = mode === "prod";
-  const envConfig = isProductionMode
-    ? require("./webpack.prod.config")
-    : require("./webpack.dev.config");
+  const envConfig = isProductionMode ? prod : dev;
 
   return merge(baseConfig, envConfig);
 };

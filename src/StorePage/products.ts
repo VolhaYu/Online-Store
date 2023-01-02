@@ -1,5 +1,5 @@
 import { divStorePage } from "./filtres";
-import { products } from "../productsData";
+import { products } from "../assets/data/productsData";
 import { price, title } from "../findData";
 
 const divProducts = document.createElement("div");
@@ -101,7 +101,7 @@ export function getProductsCard() {
     wrapPriceButton.append(priceProduct);
     const buttonToCart = document.createElement("button");
     buttonToCart.classList.add("button-to-cart");
-    buttonToCart.textContent = "add to cart";
+    buttonToCart.textContent = "Add to cart";
     wrapPriceButton.append(buttonToCart);
   }
 }
