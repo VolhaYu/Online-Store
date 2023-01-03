@@ -1,3 +1,14 @@
+.path-to-product {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px 0;
+}
+
+.description-page__links {
+  text-decoration: none;
+  color: black;
+}
+
 .title-description {
   text-align: center;
   margin: 20px 0 10px;

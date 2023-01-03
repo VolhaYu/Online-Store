@@ -8,6 +8,43 @@ export const divDescriptiontPage = document.createElement("div");
 divDescriptiontPage.classList.add("description-page");
 fragmentDescriptiontPage.appendChild(divDescriptiontPage);
 
+const pathToProduct = document.createElement("div");
+pathToProduct.classList.add("path-to-product");
+divDescriptiontPage.appendChild(pathToProduct);
+
+const linkMain = document.createElement("a");
+linkMain.classList.add("description-page__links");
+linkMain.setAttribute("href", "");
+linkMain.textContent = "Store";
+pathToProduct.appendChild(linkMain);
+
+const p1 = document.createElement("p");
+p1.textContent = ">>";
+pathToProduct.appendChild(p1);
+
+const linkCategory = document.createElement("a");
+linkCategory.classList.add("description-page__links");
+// linkCategory.setAttribute("href", "#");
+pathToProduct.appendChild(linkCategory);
+
+const p2 = document.createElement("p");
+p2.textContent = ">>";
+pathToProduct.appendChild(p2);
+
+const linkBrand = document.createElement("a");
+linkBrand.classList.add("description-page__links");
+// linkBrand.setAttribute("href", "#");
+pathToProduct.appendChild(linkBrand);
+
+const p3 = document.createElement("p");
+p3.textContent = ">>";
+pathToProduct.appendChild(p3);
+
+const linkTitle = document.createElement("a");
+linkTitle.classList.add("description-page__links");
+// linkTitle.setAttribute("href", "#");
+pathToProduct.appendChild(linkTitle);
+
 const titleDescription = document.createElement("h2");
 titleDescription.classList.add("title-description");
 divDescriptiontPage.appendChild(titleDescription);
@@ -77,7 +114,7 @@ buyNowButton.classList.add("add-to-cart__button");
 buyNowButton.textContent = "Buy Now";
 addToCart.appendChild(buyNowButton);
 
-export const imgClick = document.querySelectorAll(".product__img");
+
 
 function getSliderImage(n: number) {
   for (let j = 1; j < products[n].images.length; j++) {
@@ -88,11 +125,16 @@ function getSliderImage(n: number) {
   }
 }
 
+export const imgClick = document.querySelectorAll(".product__img");
+
 function getProductInfo() {
   for (let i = 0; i < imgClick.length; i++) {
     imgClick[i].addEventListener("click", () => {
       document.querySelector("main")?.removeChild(divStorePage);
       document.querySelector("main")?.appendChild(divDescriptiontPage);
+      linkCategory.textContent = `${products[i].category}`;
+      linkBrand.textContent = `${products[i].brand}`;
+      linkTitle.textContent = `${products[i].title}`;
       titleDescription.textContent = `${products[i].title}`;
       mainPhoto.src = products[i].thumbnail;
       infoDescription.textContent = `Description: ${products[i].description}`;
@@ -104,11 +146,11 @@ function getProductInfo() {
       priceInfo.textContent = `$${products[i].price}`;
       addToCartButton.textContent = buttunToCart[i].textContent;
       getSliderImage(i);
-      // if (addToCartButton.textContent === "In cart") {
-      //   buttunToCart[i].classList.add("button-to-cart-active");
-      // } else {
-      //   buttunToCart[i].classList.remove("button-to-cart-active");
-      // }
+      if (addToCartButton.textContent === "In cart") {
+        buttunToCart[i].classList.add("button-to-cart-active");
+      } else {
+        buttunToCart[i].classList.remove("button-to-cart-active");
+      }
       getCartCounterDescription(i);
 
       return products[i];
@@ -118,3 +160,4 @@ function getProductInfo() {
 getProductInfo();
 
 // document.querySelector("main")?.appendChild(fragmentDescriptiontPage);
+

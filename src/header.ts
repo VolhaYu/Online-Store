@@ -8,6 +8,7 @@ const cartCounter = document.querySelector(".shoping-cart__number") as HTMLEleme
 const headerTotal = document.querySelector(".header__p") as HTMLElement;
 let counter = 0;
 let totalCounter = 0;
+// const addToCartButton = document.querySelector(".add-to-cart__button") as HTMLElement;
 
 (function getCartCounter() {
   for (let i = 0; i < buttunToCart.length; i++) {
