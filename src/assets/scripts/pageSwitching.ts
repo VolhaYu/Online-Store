@@ -1,6 +1,6 @@
-import { divStorePage } from "./StorePage/filtres";
-import { divCartPage } from "./CartPage/cartPage";
-import { divDescriptiontPage } from "./descriptionPage/productDescription";
+import { divStorePage } from "../../StorePage/filtres";
+import { divCartPage } from "../../CartPage/cartPage";
+import { divDescriptiontPage } from "../../descriptionPage/productDescription";
 
 document.querySelector(".shoping-cart")?.addEventListener("click", () => {
   if (document.querySelector("main")?.firstChild === divStorePage) {
