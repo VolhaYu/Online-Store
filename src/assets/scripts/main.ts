@@ -13,7 +13,7 @@ header.appendChild(headerFrame);
 
 const logo = document.createElement("A");
 logo.setAttribute("class", "logo");
-logo.setAttribute("href", "");
+logo.setAttribute("href", "#");
 logo.innerHTML = `<img class="logo__img"src="assets/img/logo.png" alt="logo">`;
 headerFrame.appendChild(logo);
 

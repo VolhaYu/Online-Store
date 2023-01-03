@@ -14,14 +14,19 @@ let totalCounter = 0;
     buttunToCart[i].addEventListener("click", () => {
       emptyCart.style.display = "none";
       divCartPage.appendChild(cartWrapper);
-      buttunToCart[i].classList.toggle("button-to-cart-active");
       showInCart(i);
       if (buttunToCart[i].textContent === "Add to cart") {
         buttunToCart[i].textContent = "In cart";
+        addToCartButton.textContent = "In cart";
+        buttunToCart[i].classList.add("button-to-cart-active");
+        addToCartButton.classList.add("button-to-cart-active");
         counter = counter + 1;
         totalCounter = totalCounter + Number(products[i].price);
       } else {
         buttunToCart[i].textContent = "Add to cart";
+        addToCartButton.textContent = "Add to cart";
+        buttunToCart[i].classList.remove("button-to-cart-active");
+        addToCartButton.classList.remove("button-to-cart-active");
         counter = counter - 1;
         totalCounter = totalCounter - Number(products[i].price);
       }
@@ -34,13 +39,16 @@ let totalCounter = 0;
 export function getCartCounterDescription(n: number) {
   if (document.querySelector("main")?.appendChild(divDescriptiontPage)) {
     addToCartButton.addEventListener("click", () => {
-      addToCartButton.classList.toggle("button-to-cart-active");
-      if (addToCartButton.textContent === "in cart") {
-        addToCartButton.textContent = "add to cart";
+      if (addToCartButton.textContent === "In cart") {
+        addToCartButton.textContent = "Add to cart";
+        buttunToCart[n].textContent = "Add to cart";
+        addToCartButton.classList.remove("button-to-cart-active");
         counter = counter - 1;
         totalCounter = totalCounter - Number(products[n].price);
       } else {
-        addToCartButton.textContent = "in cart";
+        addToCartButton.textContent = "In cart";
+        buttunToCart[n].textContent = "In cart";
+        addToCartButton.classList.add("button-to-cart-active");
         counter = counter + 1;
         totalCounter = totalCounter + Number(products[n].price);
       }
@@ -48,7 +56,7 @@ export function getCartCounterDescription(n: number) {
       buttunToCart[n].classList.toggle("button-to-cart-active");
       cartCounter.textContent = `${counter}`;
       headerTotal.textContent = `Grand total: $${totalCounter}`;
-      return addToCartButton;
+      // return addToCartButton;
     });
   }
 }

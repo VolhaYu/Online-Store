@@ -91,6 +91,8 @@ function getSliderImage(n: number) {
 function getProductInfo() {
   for (let i = 0; i < imgClick.length; i++) {
     imgClick[i].addEventListener("click", () => {
+      document.querySelector("main")?.removeChild(divStorePage);
+      document.querySelector("main")?.appendChild(divDescriptiontPage);
       titleDescription.textContent = `${products[i].title}`;
       mainPhoto.src = products[i].thumbnail;
       infoDescription.textContent = `Description: ${products[i].description}`;
@@ -102,12 +104,13 @@ function getProductInfo() {
       priceInfo.textContent = `$${products[i].price}`;
       addToCartButton.textContent = buttunToCart[i].textContent;
       getSliderImage(i);
-      if (buttunToCart[i].textContent === "in cart") {
-        addToCartButton.classList.add("button-to-cart-active");
-      }
+      // if (addToCartButton.textContent === "In cart") {
+      //   buttunToCart[i].classList.add("button-to-cart-active");
+      // } else {
+      //   buttunToCart[i].classList.remove("button-to-cart-active");
+      // }
       getCartCounterDescription(i);
-      document.querySelector("main")?.removeChild(divStorePage);
-      document.querySelector("main")?.appendChild(divDescriptiontPage);
+
       return products[i];
     });
   }
