@@ -84,7 +84,6 @@ divProducts.appendChild(cardsProducts);
 
 function setProductsCard(products: Array<Products>) {
   for (const product of products) {
-
     const cardProduct = document.createElement("div");
     cardProduct.classList.add("card-product");
     cardsProducts.appendChild(cardProduct);
@@ -115,8 +114,13 @@ function setProductsCard(products: Array<Products>) {
 
     const priceProduct = document.createElement("p");
     priceProduct.classList.add("product__price");
-    priceProduct.textContent = `$${product.price}`;
+    priceProduct.textContent = `Price: $${product.price}`;
     wrapPriceButton.append(priceProduct);
+
+    const ratingProduct = document.createElement("p");
+    ratingProduct.classList.add("product__rating");
+    ratingProduct.textContent = `Rating: ${product.rating}`;
+    wrapPriceButton.append(ratingProduct);
 
     const buttonToCart = document.createElement("button");
     buttonToCart.classList.add("button-to-cart");
@@ -126,7 +130,7 @@ function setProductsCard(products: Array<Products>) {
   }
 }
 
-//setProductsCard(products);
+setProductsCard(products);
 
 // const radioSwichView = document.querySelectorAll(".switch-view");
 const cardProduct = document.querySelectorAll(".card-product");
@@ -165,12 +169,53 @@ const infoProduct = document.querySelectorAll(".product__info");
 // sorts
 select.addEventListener("change", (event) => {
   const target = event.target as HTMLSelectElement;
+  console.log(target.value);
   const min = products.sort((a, b) => a.price - b.price);
   const max = products.sort((a, b) => b.price - a.price);
+
   if (target.value === "sort by price min") {
-    setProductsCard(min);
+    setProductsCard(min); // sort by rating min
   }
+
   if (target.value === "sort by price max") {
-    setProductsCard(max);
+    setProductsCard(max); //sort by rating max
   }
+
 });
+/*
+function sortMumberMin(a: number, b: number) {
+  return a - b;
+};
+*/
+const booksList = document.getElementsByClassName("card-product");
+
+const elements = [].slice.call(booksList[0].childNodes[0]);
+console.log(elements)
+
+const e = cardsProducts.children as HTMLCollection;
+[].slice
+  .call(e)
+  .sort((a, b) => a - b).forEach(item => console.log(item));
+
+//options.forEach(item => console.log(item.innerText))
+
+/*
+var items = [
+  { name: 'Edward', value: 21 },
+  { name: 'Sharpe', value: 37 },
+  { name: 'And', value: 45 },
+  { name: 'The', value: -12 },
+  { name: 'Magnetic' },
+  { name: 'Zeros', value: 37 }
+];
+items.sort(function (a, b) {
+  if (a.name > b.name) {
+    return 1;
+  }
+  if (a.name < b.name) {
+    return -1;
+  }
+  // a должно быть равным b
+  return 0;
+});
+*/

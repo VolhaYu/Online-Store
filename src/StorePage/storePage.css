@@ -233,7 +233,8 @@
 }
 
 .product__title,
-.product__price {
+.product__price,
+.product__rating {
     margin: 0;
 }
 
