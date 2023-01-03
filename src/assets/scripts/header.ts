@@ -1,6 +1,6 @@
-import { emptyCart, divCartPage, cartWrapper, showInCart } from "./CartPage/cartPage";
-import { products } from "./assets/data/productsData";
-import { addToCartButton, divDescriptiontPage } from "./descriptionPage/productDescription";
+import { emptyCart, divCartPage, cartWrapper, showInCart } from "../../CartPage/cartPage";
+import { products } from "../data/productsData";
+import { addToCartButton, divDescriptiontPage } from "../../descriptionPage/productDescription";
 
 export const buttunToCart = document.querySelectorAll(".button-to-cart");
 // console.log(buttunToCart);

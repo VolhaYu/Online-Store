@@ -1,7 +1,7 @@
 import "./description.css";
 import { products } from "../assets/data/productsData";
 import { divStorePage } from "../StorePage/filtres";
-import { getCartCounterDescription, buttunToCart } from "../header";
+import { getCartCounterDescription, buttunToCart } from "../assets/scripts/header";
 
 const fragmentDescriptiontPage = document.createDocumentFragment();
 export const divDescriptiontPage = document.createElement("div");
