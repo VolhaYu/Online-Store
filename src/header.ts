@@ -13,13 +13,14 @@ let totalCounter = 0;
 (function getCartCounter() {
   for (let i = 0; i < buttunToCart.length; i++) {
     buttunToCart[i].addEventListener("click", () => {
+      console.log("click");
       emptyCart.style.display = "none";
       divCartPage.appendChild(cartWrapper);
       showInCart(i);
       if (buttunToCart[i].textContent === "Add to cart") {
         buttunToCart[i].textContent = "In cart";
-        addToCartButton.textContent = "In cart";
         buttunToCart[i].classList.add("button-to-cart-active");
+        addToCartButton.textContent = "In cart";
         addToCartButton.classList.add("button-to-cart-active");
         counter = counter + 1;
         totalCounter = totalCounter + Number(products[i].price);
@@ -40,6 +41,7 @@ let totalCounter = 0;
 export function getCartCounterDescription(n: number) {
   if (document.querySelector("main")?.appendChild(divDescriptiontPage)) {
     addToCartButton.addEventListener("click", () => {
+      console.log("cl");
       if (addToCartButton.textContent === "In cart") {
         addToCartButton.textContent = "Add to cart";
         buttunToCart[n].textContent = "Add to cart";

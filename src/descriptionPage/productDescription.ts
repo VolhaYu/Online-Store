@@ -65,10 +65,6 @@ export const wrapSlideImage = document.createElement("div");
 wrapSlideImage.classList.add("wrap-slide-image");
 wrapDescriptionImage.appendChild(wrapSlideImage);
 
-// const slideImage = document.createElement("img");
-// slideImage.classList.add("slide-img");
-// wrapSlideImage.appendChild(slideImage);
-
 const wrapProductInfo = document.createElement("div");
 wrapProductInfo.classList.add("wrap-description__product-info");
 wrapDescription.appendChild(wrapProductInfo);
@@ -106,7 +102,7 @@ addToCart.appendChild(priceInfo);
 
 export const addToCartButton = document.createElement("button");
 addToCartButton.classList.add("button-to-cart", "add-to-cart__button");
-addToCartButton.textContent = "add to cart";
+// addToCartButton.textContent = "add to cart";
 addToCart.appendChild(addToCartButton);
 
 const buyNowButton = document.createElement("button");
@@ -130,6 +126,7 @@ export const imgClick = document.querySelectorAll(".product__img");
 function getProductInfo() {
   for (let i = 0; i < imgClick.length; i++) {
     imgClick[i].addEventListener("click", () => {
+      wrapSlideImage.innerHTML = " ";
       document.querySelector("main")?.removeChild(divStorePage);
       document.querySelector("main")?.appendChild(divDescriptiontPage);
       linkCategory.textContent = `${products[i].category}`;
@@ -146,18 +143,38 @@ function getProductInfo() {
       priceInfo.textContent = `$${products[i].price}`;
       addToCartButton.textContent = buttunToCart[i].textContent;
       getSliderImage(i);
+      bigImg();
       if (addToCartButton.textContent === "In cart") {
         buttunToCart[i].classList.add("button-to-cart-active");
       } else {
         buttunToCart[i].classList.remove("button-to-cart-active");
       }
       getCartCounterDescription(i);
-
       return products[i];
     });
   }
 }
 getProductInfo();
 
-// document.querySelector("main")?.appendChild(fragmentDescriptiontPage);
+let isBig = false;
+function bigImg() {
+  const slideImage = document.querySelectorAll(".slide-img");
+  console.log(slideImage);
+  for (let i = 0; i < slideImage.length; i++) {
+    slideImage[i].addEventListener("click", () => {
+      slideImage.forEach(el => {
+        el.classList.remove("active-img");
+      });
+      if (isBig === false) {
+        slideImage[i].classList.add("active-img");
+        isBig = true;
+      } else {
+        slideImage[i].classList.remove("active-img");
+        isBig = false;
+      }
+    });
+  }
+}
+
+
 

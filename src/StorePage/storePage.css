@@ -17,6 +17,7 @@
     border-radius: 8px;
     transition: border 0.25s;
 }
+
 .products {
     width: 100%;
 }
@@ -184,7 +185,7 @@
     margin-top: 10px;
 }
 
-.label-radio + .label-radio {
+.label-radio+.label-radio {
     margin-left: 10px;
 }
 
@@ -246,6 +247,7 @@
     box-shadow: 0px 2px 4px rgb(27 78 163 / 20%), 0px 4px 8px rgb(41 121 255 / 20%);
     text-align: center;
     cursor: pointer;
+    padding: 3px;
 }
 
 .button-to-cart-active {
