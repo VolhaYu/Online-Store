@@ -9,4 +9,4 @@ import "./assets/data/productsData";
 import "./CartPage/cartPage";
 import "./pageSwitching";
 import "./descriptionPage/productDescription";
-//import "./header";
+import "./header";

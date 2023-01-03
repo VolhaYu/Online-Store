@@ -184,6 +184,10 @@
     margin-top: 10px;
 }
 
+.label-radio + .label-radio {
+    margin-left: 10px;
+}
+
 .cards-products {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -276,6 +280,7 @@
 }
 
 @media (max-width: 768px) {
+
     .store-page {
         display: block;
     }
@@ -320,5 +325,7 @@
 
     .cards-products {
         grid-gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
     }
+
 }

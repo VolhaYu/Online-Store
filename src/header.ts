@@ -16,12 +16,12 @@ let totalCounter = 0;
       divCartPage.appendChild(cartWrapper);
       buttunToCart[i].classList.toggle("button-to-cart-active");
       showInCart(i);
-      if (buttunToCart[i].textContent === "add to cart") {
-        buttunToCart[i].textContent = "in cart";
+      if (buttunToCart[i].textContent === "Add to cart") {
+        buttunToCart[i].textContent = "In cart";
         counter = counter + 1;
         totalCounter = totalCounter + Number(products[i].price);
       } else {
-        buttunToCart[i].textContent = "add to cart";
+        buttunToCart[i].textContent = "Add to cart";
         counter = counter - 1;
         totalCounter = totalCounter - Number(products[i].price);
       }

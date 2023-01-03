@@ -15,16 +15,7 @@ body {
     "header header"
     "side main"
     "footer footer";
-}
-
-.title {
-  color: red;
-  font: 12px tahoma;
-}
-
-.wrapper {
-  max-width: 1600px;
-  margin: auto;
+  height: 100vh;
 }
 
 .title {
@@ -34,14 +25,12 @@ body {
   color: brown;
 }
 
-header,
-footer {
-  grid-area: header;
-  padding: 1%;
-}
-
 .header {
   grid-area: header;
+}
+
+.filters {
+  grid-area: side;
   border-radius: 8px;
 }
 
@@ -49,36 +38,17 @@ footer {
   grid-area: main;
 }
 
-.filters {
-  grid-area: side;
-}
-
-.section div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.frame {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
 .footer {
   grid-area: footer;
-
-  /*background-color:blanchedalmond;*/
-}
-
-/**/
-
-.body {
-  height: 100vh;
 }
 
 .header,
 .footer {
+  padding: 1%;
+}
+
+.header-wrapper,
+.footer-wrapper {
   width: 100%;
   display: flex;
   align-items: center;
@@ -126,13 +96,9 @@ footer {
 
 .github__img {
   margin-top: 5px;
+  width: 10vh;
 }
 
 .link-rsschool__img {
   width: 15vh;
 }
-
-.github__img {
-  width: 10vh;
-}
-/*# sourceMappingURL=quiz.css.map */
