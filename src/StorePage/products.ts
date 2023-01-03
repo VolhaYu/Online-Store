@@ -82,8 +82,8 @@ const cardsProducts = document.createElement("div");
 cardsProducts.classList.add("cards-products");
 divProducts.appendChild(cardsProducts);
 
-function setProductsCard(products: Array<Products>) {
-  for (const product of products) {
+function setProductsCard(prod: Array<Products>) {
+  for (const product of prod) {
     const cardProduct = document.createElement("div");
     cardProduct.classList.add("card-product");
     cardsProducts.appendChild(cardProduct);
@@ -166,18 +166,29 @@ const infoProduct = document.querySelectorAll(".product__info");
 })()
 
 // sorts
+
+
+
+
 select.addEventListener("change", (event) => {
   const target = event.target as HTMLSelectElement;
-  console.log(target.value);
-  const min = products.sort((a, b) => a.price - b.price);
-  const max = products.sort((a, b) => b.price - a.price);
+
+const booksList = document.getElementsByClassName("card-product");
 
   if(target.value === "sort by price min") {
-    setProductsCard(min); // sort by rating min
-  }
+      const mi = products.sort((a, b) => a.price - b.price);
+  console.log(mi)
+    console.log(target.value);
+    Array.from(booksList).forEach(item => item.remove())
+    //Array.from(booksList).map(item => item.children[1].children[2].children[1].textContent?.split(" ")[1]).sort((a, b) => Number(a) - Number(b));
 
-  if(target.value === "sort by price max") {
-    setProductsCard(max); //sort by rating max
+    setProductsCard(mi);
+  } else if(target.value === "sort by price max") {
+      const ma = products.sort((a, b) => b.price - a.price);
+  console.log(ma)
+    console.log(target.value);
+    Array.from(booksList).forEach(item => item.remove())
+    setProductsCard(ma); //sort by rating max
   }
 
 });
@@ -186,15 +197,18 @@ function sortMumberMin(a: number, b: number) {
   return a - b;
 };
 */
-const booksList = document.getElementsByClassName("card-product");
 
-const elements = [].slice.call(booksList[0].childNodes[0]);
-console.log(elements)
+//const elements = [].slice.call(booksList[0].childNodes[0]);
+//const temp = Array.from(booksList).map(item => item.children[1].children[2].children[1].textContent?.split(" ")[1]).sort((a, b) => Number(a) - Number(b))
+//console.log(temp)
+//Array.from(booksList).sort();
 
 const e = cardsProducts.children as HTMLCollection;
+//console.log(e);
+
 [].slice
   .call(e)
-  .sort((a, b) => a - b).forEach(item => console.log(item));
+  .sort((a, b) => a - b);
 
 //options.forEach(item => console.log(item.innerText))
 
