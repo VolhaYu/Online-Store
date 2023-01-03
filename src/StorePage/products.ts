@@ -1,6 +1,6 @@
 import { divStorePage } from "./filtres";
 import { products } from "../assets/data/productsData";
-import { price, title, Products } from "../assets/scripts/findData";
+import { Products } from "../assets/scripts/findData";
 
 const divProducts = document.createElement("div");
 divProducts.classList.add("products");
@@ -84,7 +84,6 @@ divProducts.appendChild(cardsProducts);
 
 function setProductsCard(products: Array<Products>) {
   for (const product of products) {
-    
     const cardProduct = document.createElement("div");
     cardProduct.classList.add("card-product");
     cardsProducts.appendChild(cardProduct);
@@ -115,8 +114,13 @@ function setProductsCard(products: Array<Products>) {
 
     const priceProduct = document.createElement("p");
     priceProduct.classList.add("product__price");
-    priceProduct.textContent = `$${product.price}`;
+    priceProduct.textContent = `Price: $${product.price}`;
     wrapPriceButton.append(priceProduct);
+
+    const ratingProduct = document.createElement("p");
+    ratingProduct.classList.add("product__rating");
+    ratingProduct.textContent = `Rating: ${product.rating}`;
+    wrapPriceButton.append(ratingProduct);
 
     const buttonToCart = document.createElement("button");
     buttonToCart.classList.add("button-to-cart");
@@ -125,7 +129,7 @@ function setProductsCard(products: Array<Products>) {
   }
 }
 
-//setProductsCard(products);
+setProductsCard(products);
 
 // const radioSwichView = document.querySelectorAll(".switch-view");
 const cardProduct = document.querySelectorAll(".card-product");
@@ -164,22 +168,33 @@ const infoProduct = document.querySelectorAll(".product__info");
 // sorts
 select.addEventListener("change", (event) => {
   const target = event.target as HTMLSelectElement;
+  console.log(target.value);
   const min = products.sort((a, b) => a.price - b.price);
   const max = products.sort((a, b) => b.price - a.price);
-  if(target.value === "sort by price min") {
-    setProductsCard(min);
-  }
-  if(target.value === "sort by price max") {
-    setProductsCard(max);
-  }
-});
 
+  if(target.value === "sort by price min") {
+    setProductsCard(min); // sort by rating min
+  }
+
+  if(target.value === "sort by price max") {
+    setProductsCard(max); //sort by rating max
+  }
+
+});
+/*
 function sortMumberMin(a: number, b: number) {
   return a - b;
 };
+*/
+const booksList = document.getElementsByClassName("card-product");
 
-const booksList = document.querySelector(".cards-products");
-console.log(booksList)
+const elements = [].slice.call(booksList[0].childNodes[0]);
+console.log(elements)
+
+const e = cardsProducts.children as HTMLCollection;
+[].slice
+  .call(e)
+  .sort((a, b) => a - b).forEach(item => console.log(item));
 
 //options.forEach(item => console.log(item.innerText))
 
