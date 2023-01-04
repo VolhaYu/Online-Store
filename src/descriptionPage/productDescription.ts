@@ -1,7 +1,9 @@
 import "./description.css";
 import { products } from "../assets/data/productsData";
 import { divStorePage } from "../StorePage/filtres";
-import { getCartCounterDescription, buttunToCart } from "../assets/scripts/header";
+import { getCartCounterDescription } from "../StorePage/products";
+
+const buttunToCart = document.getElementsByClassName("button-to-cart");
 
 const fragmentDescriptiontPage = document.createDocumentFragment();
 export const divDescriptiontPage = document.createElement("div");
@@ -102,16 +104,20 @@ function getProductInfo() {
       priceInfo.textContent = `$${products[i].price}`;
       addToCartButton.textContent = buttunToCart[i].textContent;
       getSliderImage(i);
+
       if (buttunToCart[i].textContent === "in cart") {
         addToCartButton.classList.add("button-to-cart-active");
       }
+
       getCartCounterDescription(i);
       document.querySelector("main")?.removeChild(divStorePage);
       document.querySelector("main")?.appendChild(divDescriptiontPage);
+
       return products[i];
     });
   }
 }
+
 getProductInfo();
 
 // document.querySelector("main")?.appendChild(fragmentDescriptiontPage);

@@ -1,4 +1,3 @@
-//import { totalCounter } from "../../StorePage/products";
 const total = 0;
 
 const fragment = document.createDocumentFragment();
