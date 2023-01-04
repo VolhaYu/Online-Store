@@ -166,69 +166,29 @@ const infoProduct = document.querySelectorAll(".product__info");
 })()
 
 // sorts
-
-
-
-
 select.addEventListener("change", (event) => {
   const target = event.target as HTMLSelectElement;
-
-const booksList = document.getElementsByClassName("card-product");
+  const cardsProducts = document.getElementsByClassName("card-product");
 
   if(target.value === "sort by price min") {
-      const mi = products.sort((a, b) => a.price - b.price);
-  console.log(mi)
-    console.log(target.value);
-    Array.from(booksList).forEach(item => item.remove())
-    //Array.from(booksList).map(item => item.children[1].children[2].children[1].textContent?.split(" ")[1]).sort((a, b) => Number(a) - Number(b));
-
-    setProductsCard(mi);
+    const minPrice = products.sort((a, b) => a.price - b.price);
+    removeNodes(cardsProducts);
+    setProductsCard(minPrice);
   } else if(target.value === "sort by price max") {
-      const ma = products.sort((a, b) => b.price - a.price);
-  console.log(ma)
-    console.log(target.value);
-    Array.from(booksList).forEach(item => item.remove())
-    setProductsCard(ma); //sort by rating max
+    const maxPrice = products.sort((a, b) => b.price - a.price);
+    removeNodes(cardsProducts);
+    setProductsCard(maxPrice);
+  } else if(target.value === "sort by rating min") {
+    const minRating = products.sort((a, b) => a.rating - b.rating);
+    removeNodes(cardsProducts);
+    setProductsCard(minRating);
+  } else if(target.value === "sort by rating max") {
+    const maxRating = products.sort((a, b) => b.rating - a.rating);
+    removeNodes(cardsProducts);
+    setProductsCard(maxRating);
   }
-
 });
-/*
-function sortMumberMin(a: number, b: number) {
-  return a - b;
-};
-*/
 
-//const elements = [].slice.call(booksList[0].childNodes[0]);
-//const temp = Array.from(booksList).map(item => item.children[1].children[2].children[1].textContent?.split(" ")[1]).sort((a, b) => Number(a) - Number(b))
-//console.log(temp)
-//Array.from(booksList).sort();
-
-const e = cardsProducts.children as HTMLCollection;
-//console.log(e);
-
-[].slice
-  .call(e)
-  .sort((a, b) => a - b);
-
-//options.forEach(item => console.log(item.innerText))
-
-/*
-var items = [
-  { name: 'Edward', value: 21 },
-  { name: 'Sharpe', value: 37 },
-  { name: 'And', value: 45 },
-  { name: 'The', value: -12 },
-  { name: 'Magnetic' },
-  { name: 'Zeros', value: 37 }
-];
-items.sort(function (a, b) {
-  if (a.name > b.name) {
-    return 1;
-  }
-  if (a.name < b.name) {
-    return -1;
-  }
-  // a должно быть равным b
-  return 0;
-});
-*/
+function removeNodes(items: HTMLCollectionOf<Element>) {
+  Array.from(items).forEach(item => item.remove())
+}
