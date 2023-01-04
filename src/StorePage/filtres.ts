@@ -46,6 +46,7 @@ for (let i = 0; i < categorySet.size; i++) {
   const labelCheckbox = document.createElement("label");
   labelCheckbox.classList.add("label-checkbox");
   labelCheckbox.textContent = `${Array.from(categorySet)[i]}`;
+  
   const inputCheckbox = document.createElement("input");
   inputCheckbox.setAttribute("type", "checkbox");
   inputCheckbox.classList.add("checkbox");
