@@ -1,7 +1,13 @@
 import "./description.css";
 import { products } from "../assets/data/productsData";
 import { divStorePage } from "../StorePage/filtres";
+<<<<<<< HEAD
 import { getCartCounterDescription, buttunToCart } from "../cartPageWork";
+=======
+import { getCartCounterDescription } from "../StorePage/products";
+
+const buttunToCart = document.getElementsByClassName("button-to-cart");
+>>>>>>> d4b17e6b (feat: add card-counter)
 
 const fragmentDescriptiontPage = document.createDocumentFragment();
 export const divDescriptiontPage = document.createElement("div");
@@ -137,7 +143,13 @@ function getProductInfo() {
       priceInfo.textContent = `$${products[i].price}`;
       addToCartButton.setAttribute("value", `${products[i].id}`);
       addToCartButton.textContent = buttunToCart[i].textContent;
+<<<<<<< HEAD
       if (buttunToCart[i].textContent === "In cart") {
+=======
+      getSliderImage(i);
+
+      if (buttunToCart[i].textContent === "in cart") {
+>>>>>>> d4b17e6b (feat: add card-counter)
         addToCartButton.classList.add("button-to-cart-active");
       } else {
         addToCartButton.classList.remove("button-to-cart-active");
@@ -147,13 +159,21 @@ function getProductInfo() {
       } else {
         buttunToCart[i].classList.remove("button-to-cart-active");
       }
+
       getCartCounterDescription(i);
+<<<<<<< HEAD
       getSliderImage(i);
       bigImg();
+=======
+      document.querySelector("main")?.removeChild(divStorePage);
+      document.querySelector("main")?.appendChild(divDescriptiontPage);
+
+>>>>>>> d4b17e6b (feat: add card-counter)
       return products[i];
     });
   }
 }
+
 getProductInfo();
 
 let isBig = false;
