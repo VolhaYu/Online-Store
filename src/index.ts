@@ -1,11 +1,22 @@
-import "./assets/css/main.css"
 import "./assets/scripts/main"
+import "./assets/css/main.css"
+
+import "./CartPage/cartPage";
+
+import "./descriptionPage/productDescription";
+
 import "./StorePage/filtres";
 import "./StorePage/products";
 import "./StorePage/storePage.css";
-import "./assets/scripts/findData";
+
 import "./assets/data/productsData";
-import "./CartPage/cartPage";
-import "./assets/scripts/pageSwitching";
-import "./descriptionPage/productDescription";
 import "./assets/scripts/header";
+import "./assets/scripts/findData";
+import "./assets/scripts/pageSwitching";
+
+
+
+
+
+
+
