@@ -42,7 +42,6 @@ select.appendChild(sortRatingMax);
 
 const foundProduct = document.createElement("p");
 foundProduct.classList.add("found-product");
-foundProduct.textContent = `Found: ${products.length} pcs`;
 sortProducts.appendChild(foundProduct);
 
 const wrapRadio = document.createElement("div");
@@ -98,8 +97,11 @@ function setProductsCard(items: Array<Products>) {
   for (const product of items) {
     const cardProduct = document.createElement("div");
     cardProduct.classList.add("card-product");
-    cardProduct.dataset.category = product.category.toUpperCase();
+    cardProduct.dataset.id = product.id.toString();
+    cardProduct.dataset.price = product.price.toString();
+    cardProduct.dataset.rating = product.rating.toString();
     cardProduct.dataset.brand = product.brand.toUpperCase();
+    cardProduct.dataset.category = product.category.toUpperCase();
     cardsProducts.appendChild(cardProduct);
 
     const productImg = document.createElement("div");
@@ -179,40 +181,27 @@ select.addEventListener("change", (event) => {
   const items = document.getElementsByClassName("card-product");
 
   if (target.value === "sort by price min") {
-    const minPrice = products.sort((a, b) => a.price - b.price);
-    removeNodes(items);
-    setProductsCard(minPrice);
+    const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-price")) - Number(b.getAttribute("data-price")));
+    sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
     if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
     getCartCounter();
   } else if (target.value === "sort by price max") {
-    const maxPrice = products.sort((a, b) => b.price - a.price);
-    removeNodes(items);
-    setProductsCard(maxPrice);
+    const sorted = Array.from(items).sort((a: Element, b: Element) => Number(b.getAttribute("data-price")) - Number(a.getAttribute("data-price")));
+    sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
     if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
     getCartCounter();
   } else if (target.value === "sort by rating min") {
-    const minRating = products.sort((a, b) => a.rating - b.rating);
-    removeNodes(items);
-    setProductsCard(minRating);
+    const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-rating")) - Number(b.getAttribute("data-rating")));
+    sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
     if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
     getCartCounter();
   } else if (target.value === "sort by rating max") {
-    const maxRating = products.sort((a, b) => b.rating - a.rating);
-    removeNodes(items);
-    setProductsCard(maxRating);
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
-  } else if (target.value === "sort") {
-    removeNodes(items);
-    setProductsCard(products);
+    const sorted = Array.from(items).sort((a: Element, b: Element) => Number(b.getAttribute("data-rating")) - Number(a.getAttribute("data-rating")));
+    sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
     if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
     getCartCounter();
   }
 });
-
-function removeNodes(items: HTMLCollectionOf<Element>) {
-  Array.from(items).forEach(item => item.remove())
-}
 
 function setViewRow(items: HTMLCollectionOf<Element>) {
   for (let i = 0; i < items.length; i++) {
@@ -282,6 +271,8 @@ export function getCartCounterDescription(n: number) {
   }
 }
 // getCartCounterDescription();
+
+foundProduct.textContent = `Found: ${Array.from(document.getElementsByClassName("card-product")).length} pcs`;
 
 export { setProductsCard, getCartCounter, totalCounter };
 >>>>>>> d4b17e6b (feat: add card-counter)
