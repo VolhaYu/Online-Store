@@ -1,7 +1,7 @@
 import "./description.css";
 import { products } from "../assets/data/productsData";
 import { divStorePage } from "../StorePage/filtres";
-import { getCartCounterDescription, buttunToCart } from "../header";
+import { getCartCounterDescription, buttunToCart } from "../cartPageWork";
 
 const fragmentDescriptiontPage = document.createDocumentFragment();
 export const divDescriptiontPage = document.createElement("div");
@@ -100,7 +100,7 @@ const priceInfo = document.createElement("p");
 priceInfo.classList.add("price-info");
 addToCart.appendChild(priceInfo);
 
-export const addToCartButton = document.createElement("button");
+export const addToCartButton: HTMLButtonElement = document.createElement("button");
 addToCartButton.classList.add("button-to-cart", "add-to-cart__button");
 // addToCartButton.textContent = "add to cart";
 addToCart.appendChild(addToCartButton);
@@ -141,14 +141,16 @@ function getProductInfo() {
       infoBrand.textContent = `Brand: ${products[i].brand}`;
       infoCategory.textContent = `Category: ${products[i].category}`;
       priceInfo.textContent = `$${products[i].price}`;
+      addToCartButton.setAttribute("value", `${products[i].id}`);
       addToCartButton.textContent = buttunToCart[i].textContent;
-      getSliderImage(i);
-      bigImg();
       if (addToCartButton.textContent === "In cart") {
         buttunToCart[i].classList.add("button-to-cart-active");
       } else {
         buttunToCart[i].classList.remove("button-to-cart-active");
       }
+      getSliderImage(i);
+      bigImg();
+
       getCartCounterDescription(i);
       return products[i];
     });

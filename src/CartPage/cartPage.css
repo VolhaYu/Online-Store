@@ -27,9 +27,13 @@ h2 {
 .products-in-cart,
 .in-cart__item {
     border-radius: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     border: 1px solid transparent;
     box-shadow: 0px 2px 4px rgb(27 78 163 / 20%), 0px 4px 8px rgb(41 121 255 / 20%);
+}
+
+.products-in-cart {
+    margin-bottom: 15px;
 }
 
 .in-cart {
@@ -81,6 +85,7 @@ h2 {
 
 .total-sum {
     width: 29%;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;

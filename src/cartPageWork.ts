@@ -1,22 +1,19 @@
-import { emptyCart, divCartPage, cartWrapper, showInCart } from "./CartPage/cartPage";
+import { emptyCart, divCartPage, cartWrapper, showInCart, removeInCart, productNumber, total } from "./CartPage/cartPage";
 import { products } from "./assets/data/productsData";
 import { addToCartButton, divDescriptiontPage } from "./descriptionPage/productDescription";
 
 export const buttunToCart = document.querySelectorAll(".button-to-cart");
-// console.log(buttunToCart);
 const cartCounter = document.querySelector(".shoping-cart__number") as HTMLElement;
 const headerTotal = document.querySelector(".header__p") as HTMLElement;
 let counter = 0;
 let totalCounter = 0;
-// const addToCartButton = document.querySelector(".add-to-cart__button") as HTMLElement;
+let counterInCart = 0;
 
 (function getCartCounter() {
   for (let i = 0; i < buttunToCart.length; i++) {
     buttunToCart[i].addEventListener("click", () => {
-      console.log("click");
       emptyCart.style.display = "none";
       divCartPage.appendChild(cartWrapper);
-      showInCart(i);
       if (buttunToCart[i].textContent === "Add to cart") {
         buttunToCart[i].textContent = "In cart";
         buttunToCart[i].classList.add("button-to-cart-active");
@@ -24,6 +21,8 @@ let totalCounter = 0;
         addToCartButton.classList.add("button-to-cart-active");
         counter = counter + 1;
         totalCounter = totalCounter + Number(products[i].price);
+        counterInCart += 1;
+        showInCart(i);
       } else {
         buttunToCart[i].textContent = "Add to cart";
         addToCartButton.textContent = "Add to cart";
@@ -31,36 +30,45 @@ let totalCounter = 0;
         addToCartButton.classList.remove("button-to-cart-active");
         counter = counter - 1;
         totalCounter = totalCounter - Number(products[i].price);
+        counterInCart = counterInCart - 1;
       }
       cartCounter.textContent = `${counter}`;
       headerTotal.textContent = `Grand total: $${totalCounter}`;
+      productNumber.textContent = `Products: ${counterInCart}`;
+      total.textContent = `Total:${totalCounter}`;
+      console.log(counterInCart);
+      return counterInCart;
     });
   }
 })()
+console.log(counterInCart);
 
 export function getCartCounterDescription(n: number) {
   if (document.querySelector("main")?.appendChild(divDescriptiontPage)) {
     addToCartButton.addEventListener("click", () => {
-      console.log("cl");
       if (addToCartButton.textContent === "In cart") {
         addToCartButton.textContent = "Add to cart";
         buttunToCart[n].textContent = "Add to cart";
         addToCartButton.classList.remove("button-to-cart-active");
         counter = counter - 1;
         totalCounter = totalCounter - Number(products[n].price);
+        counterInCart -= 1;
       } else {
         addToCartButton.textContent = "In cart";
         buttunToCart[n].textContent = "In cart";
         addToCartButton.classList.add("button-to-cart-active");
         counter = counter + 1;
         totalCounter = totalCounter + Number(products[n].price);
+        counterInCart += 1;
       }
       buttunToCart[n].textContent = addToCartButton.textContent;
       buttunToCart[n].classList.toggle("button-to-cart-active");
       cartCounter.textContent = `${counter}`;
       headerTotal.textContent = `Grand total: $${totalCounter}`;
-      // return addToCartButton;
+      productNumber.textContent = `Products: ${counterInCart}`;
+      total.textContent = `Total:${totalCounter}`;
+      return counter;
     });
   }
 }
-// getCartCounterDescription();
+
