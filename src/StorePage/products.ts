@@ -21,7 +21,7 @@ form.appendChild(select);
 
 const option1 = document.createElement("option");
 option1.setAttribute("selected", "");
-option1.textContent = "sort";
+option1.textContent = "sort:";
 select.appendChild(option1);
 
 const sortPriceMin = document.createElement("option");
@@ -176,29 +176,28 @@ function switchView(items: HTMLCollectionOf<Element>) {
 
 select.addEventListener("change", (event) => {
   const target = event.target as HTMLSelectElement;
-  console.log(target.value)
   const items = document.getElementsByClassName("card-product");
 
   if (target.value === "sort by price min") {
     const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-price")) - Number(b.getAttribute("data-price")));
     sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
     if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
+    //getCartCounter();
   } else if (target.value === "sort by price max") {
     const sorted = Array.from(items).sort((a: Element, b: Element) => Number(b.getAttribute("data-price")) - Number(a.getAttribute("data-price")));
     sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
     if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
+    //getCartCounter();
   } else if (target.value === "sort by rating min") {
     const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-rating")) - Number(b.getAttribute("data-rating")));
     sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
     if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
+    //getCartCounter();
   } else if (target.value === "sort by rating max") {
     const sorted = Array.from(items).sort((a: Element, b: Element) => Number(b.getAttribute("data-rating")) - Number(a.getAttribute("data-rating")));
     sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
     if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
+    //getCartCounter();
   }
 });
 
