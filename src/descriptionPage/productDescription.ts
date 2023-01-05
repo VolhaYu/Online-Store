@@ -71,6 +71,7 @@ wrapDescriptionImage.appendChild(wrapSlideImage);
 const wrapProductInfo = document.createElement("div");
 wrapProductInfo.classList.add("wrap-description__product-info");
 wrapDescription.appendChild(wrapProductInfo);
+
 const infoDescription = document.createElement("p");
 infoDescription.classList.add("product-info__p");
 wrapProductInfo.appendChild(infoDescription);

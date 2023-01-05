@@ -1,34 +1,39 @@
 import { products } from "../data/productsData";
 
-export interface Products {
-id: number;
-title: string;
-description: string;
-price: number;
-discountPercentage: number;
-rating: number;
-stock: number;
-brand: string;
-category: string;
-thumbnail: string;
-images: string[];
+interface Products {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
 }
 
-export const categorySet = new Set<string>();
-export const brandSet = new Set<string>();
-export const price: number[] = [];
-export const title: string[] = [];
+const categorySet = new Set<string>();
+const brandSet = new Set<string>();
+const price: number[] = [];
+const title: string[] = [];
 const stock: number[] = [];
 
-products.forEach((prod) => {
-  categorySet.add(prod.category);
-  brandSet.add(prod.brand);
-  price.push(prod.price);
-  stock.push(prod.stock);
-  title.push(prod.title);
+products.forEach((product) => {
+  categorySet.add(product.category);
+  brandSet.add(product.brand);
+  title.push(product.title);
+  price.push(product.price);
+  stock.push(product.stock);
 });
 
-export const priceMin: number = Math.min(...price);
-export const priceMax: number = Math.max(...price);
-export const stockMin: number = Math.min(...stock);
-export const stockMax: number = Math.max(...stock);
+const sortedCategorySet = Array.from(categorySet).sort();
+const sortedBrandSet = Array.from(brandSet).sort();
+
+const priceMin: number = Math.min(...price);
+const priceMax: number = Math.max(...price);
+const stockMin: number = Math.min(...stock);
+const stockMax: number = Math.max(...stock);
+
+export { Products, categorySet, brandSet, price, title, stock, sortedCategorySet, sortedBrandSet, priceMin, priceMax, stockMin, stockMax };
