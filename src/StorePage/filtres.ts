@@ -1,4 +1,7 @@
 import { priceMin, priceMax, stockMin, stockMax, sortedCategorySet, sortedBrandSet } from "../assets/scripts/findData";
+import { products } from "../assets/data/productsData";
+import { setProductsCard } from "./products";
+import { Products } from "../assets/scripts/findData";
 
 const fragmentStorePage = document.createDocumentFragment();
 export const divStorePage = document.createElement("div");
@@ -20,7 +23,7 @@ divResetCopy.appendChild(buttonReset);
 
 const buttonCopy = document.createElement("button");
 buttonCopy.classList.add("filters__button");
-buttonCopy.textContent = "Copy filters";
+buttonCopy.textContent = "Copy link";
 divResetCopy.appendChild(buttonCopy);
 
 const inputSearch = document.createElement("input");
@@ -29,7 +32,7 @@ inputSearch.setAttribute("type", "text");
 inputSearch.setAttribute("placeholder", "search");
 inputSearch.classList.add("input-search");
 //category
-const categoryDiv = document.createElement("div");
+const categoryDiv = document.createElement("fieldset");
 categoryDiv.classList.add("category");
 divFilters.appendChild(categoryDiv);
 
@@ -54,7 +57,7 @@ for (const category of sortedCategorySet) {
   wrapCheckbox.appendChild(labelCheckbox);
 }
 // brand
-const brandDiv = document.createElement("div");
+const brandDiv = document.createElement("fieldset");
 brandDiv.classList.add("brand-div");
 divFilters.appendChild(brandDiv);
 
@@ -78,8 +81,8 @@ for (const brand of sortedBrandSet) {
   labelCheckbox.prepend(inputCheckbox);
   wrapCheckboxBrand.appendChild(labelCheckbox);
 }
-//price
-const priceDiv = document.createElement("div");
+// price
+const priceDiv = document.createElement("fieldset");
 priceDiv.classList.add("price-div");
 divFilters.appendChild(priceDiv);
 
@@ -121,8 +124,8 @@ inputRangeMaxPrice.setAttribute("min", "0");
 inputRangeMaxPrice.setAttribute("max", "100");
 inputRangeMaxPrice.setAttribute("value", "100");
 rangeContainerPrice.appendChild(inputRangeMaxPrice);
-
-const stockDiv = document.createElement("div");
+// stock
+const stockDiv = document.createElement("fieldset");
 stockDiv.classList.add("stock-div");
 divFilters.appendChild(stockDiv);
 
@@ -167,27 +170,65 @@ rangeContainerStock.appendChild(inputRangeMaxStock);
 
 document.querySelector("main")?.appendChild(fragmentStorePage);
 //
+const cards: HTMLCollectionOf<Element> = document.getElementsByClassName("card-product");
 const checkboxes: HTMLCollectionOf<Element> = document.getElementsByClassName("label-checkbox");
+const filter = new Set<string>();
+
 Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change", (event) => {
-  const cards: HTMLCollectionOf<Element> = document.getElementsByClassName("card-product");
+  const checkboxText: string = checkbox.textContent?.trim() as string;
+  const target = event.target as HTMLInputElement;
+  //const cc: Element | null = document.querySelector(".found-product");
+  //console.log(cc?.textContent)
+
+  Array.from(cards).forEach((card) => {
+    if ((card.getAttribute('data-category') !== checkboxText)) {
+      card.classList.add("hide");
+      filter.add(checkboxText);
+    }
+    /*
+    else if (card.getAttribute('data-brand') !== checkboxText) {
+      card.classList.add("hide");
+      filter.add(checkboxText);
+    }
+*/
+
+    if (!target.checked) {
+      filter.delete(checkboxText);
+      card.classList.remove("hide");
+    }
+
+  });
+}))
+
+
+//console.log(Array.from(document.getElementsByClassName("card-product")).length)
+
+//const target: EventTarget | null = event.target;
+//console.log(target.checked)
+//const temp = [];
+//console.log(filter)
+
+//temp.push(checkbox.textContent?.trim())
+//console.log(temp)
+/*
   Array.from(cards).forEach((card) => {
     if (card.getAttribute('data-category') !== checkbox.textContent?.trim()) {
       card.classList.add("hide");
-      console.log("wsdrf")
+      //setProductsCard()
     }
     else {
-      card.classList.remove("hide");
+      //card.classList.remove("hide");
       //card.classList.add("hide");
 
       //card.classList.add("show");
     }
   })
 
-  //console.log(element.getAttribute('data-category')?.trim()));
-  const target: EventTarget | null = event.target;
-  //console.log(checkbox.textContent?.trim())
+//console.log(element.getAttribute('data-category')?.trim()));
+//const target: EventTarget | null = event.target;
+//console.log(checkbox.textContent?.trim())
 }));
-
+*/
 //console.log(checkboxes[0].textContent?.trim())
 
 //const cards: HTMLCollectionOf<Element> = document.getElementsByClassName("card-product");

@@ -10,7 +10,6 @@ import "./StorePage/products";
 import "./StorePage/storePage.css";
 
 import "./assets/data/productsData";
-import "./assets/scripts/header";
 import "./assets/scripts/findData";
 import "./assets/scripts/pageSwitching";
 
