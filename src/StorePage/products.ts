@@ -42,7 +42,7 @@ select.appendChild(sortRatingMax);
 
 const foundProduct = document.createElement("p");
 foundProduct.classList.add("found-product");
-foundProduct.textContent = `Found:${products.length}`;
+foundProduct.textContent = `Found: ${products.length} pcs`;
 sortProducts.appendChild(foundProduct);
 
 const wrapRadio = document.createElement("div");
@@ -98,6 +98,8 @@ function setProductsCard(items: Array<Products>) {
   for (const product of items) {
     const cardProduct = document.createElement("div");
     cardProduct.classList.add("card-product");
+    cardProduct.dataset.category = product.category.toUpperCase();
+    cardProduct.dataset.brand = product.brand.toUpperCase();
     cardsProducts.appendChild(cardProduct);
 
     const productImg = document.createElement("div");
