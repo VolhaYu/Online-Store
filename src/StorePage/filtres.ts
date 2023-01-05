@@ -31,7 +31,7 @@ divFilters.appendChild(inputSearch);
 inputSearch.setAttribute("type", "text");
 inputSearch.setAttribute("placeholder", "search");
 inputSearch.classList.add("input-search");
-//category
+// category
 const categoryDiv = document.createElement("fieldset");
 categoryDiv.classList.add("category");
 divFilters.appendChild(categoryDiv);
@@ -170,11 +170,15 @@ rangeContainerStock.appendChild(inputRangeMaxStock);
 
 document.querySelector("main")?.appendChild(fragmentStorePage);
 //
-const cards: HTMLCollectionOf<Element> = document.getElementsByClassName("card-product");
+const cards = document.querySelectorAll(".card-product");
+console.log(cards)
 const checkboxes: HTMLCollectionOf<Element> = document.getElementsByClassName("label-checkbox");
 const filter = new Set<string>();
 
 Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change", (event) => {
+  const cards = document.querySelectorAll(".card-product");
+  //console.log(cards)
+
   const checkboxText: string = checkbox.textContent?.trim() as string;
   const target = event.target as HTMLInputElement;
   //const cc: Element | null = document.querySelector(".found-product");
@@ -182,22 +186,26 @@ Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change",
 
   Array.from(cards).forEach((card) => {
     if ((card.getAttribute('data-category') !== checkboxText)) {
-      card.classList.add("hide");
       filter.add(checkboxText);
     }
-    /*
-    else if (card.getAttribute('data-brand') !== checkboxText) {
+
+    if (filter.has(card.getAttribute('data-category') as string)) {
+      card.classList.remove("hide");
+    } else {
       card.classList.add("hide");
-      filter.add(checkboxText);
     }
-*/
+
+
+    //Array.from(cards).forEach(card => card.classList.remove("hide"));
 
     if (!target.checked) {
       filter.delete(checkboxText);
       card.classList.remove("hide");
     }
-
   });
+
+  console.log(filter)
+
 }))
 
 
