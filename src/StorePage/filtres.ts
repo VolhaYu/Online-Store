@@ -55,7 +55,7 @@ for (const category of sortedCategorySet) {
 }
 // brand
 const brandDiv = document.createElement("fieldset");
-brandDiv.classList.add("brand-div");
+brandDiv.classList.add("brand");
 divFilters.appendChild(brandDiv);
 
 const h2Brand = document.createElement("h2");
@@ -168,7 +168,8 @@ rangeContainerStock.appendChild(inputRangeMaxStock);
 document.querySelector("main")?.appendChild(fragmentStorePage);
 //
 const checkboxes: HTMLCollectionOf<Element> = document.getElementsByClassName("label-checkbox");
-let filter = new Set<string>();
+let filter1 = new Set<string>();
+let filter2 = new Set<string>();
 
 Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change", (event) => {
   const cards: NodeListOf<Element> = document.querySelectorAll(".card-product");
@@ -179,45 +180,39 @@ Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change",
     const dataCategory = card.getAttribute("data-category") as string;
     const dataBrand = card.getAttribute("data-brand") as string;
 
-    if (checkboxText !== dataCategory) {
+    if ((checkboxText !== dataCategory)) {
       card.classList.add("hide");
-      filter.add(checkboxText);
+      filter1.add(checkboxText);
     }
 
-    if (checkboxText !== dataBrand) {
+    if ((checkboxText !== dataBrand)) {
       card.classList.add("hide");
-      filter.add(checkboxText);
+      filter1.add(checkboxText);
     }
 
     if (!target.checked) {
       card.classList.remove("hide");
-      filter.delete(checkboxText);
+      filter1.delete(checkboxText);
     }
 
-    if (filter.has(dataCategory)) {
-      if (filter.has(dataBrand)) {
-        card.classList.remove("hide");
-      }
+    if (filter1.has(dataCategory) && filter1.has(dataBrand)) {
       card.classList.remove("hide");
-    } else if (filter.has(dataBrand)) {
-      if (filter.has(dataCategory)) {
-        card.classList.remove("hide");
-      }
+      // eslint-disable-next-line no-dupe-else-if
+    } else if (filter1.has(dataCategory) || filter1.has(dataBrand)) {
       card.classList.remove("hide");
     } else {
       card.classList.add("hide");
     }
 
-    if (filter.has(dataBrand) && filter.has(dataCategory)) {
-      card.classList.remove("hide");
-    } else {
-      card.classList.add("hide");
-    }
+    if (card.classList.contains("hide") && filter1.size === 0) card.classList.remove("hide");
 
-    if (card.classList.contains("hide") && filter.size === 0) card.classList.remove("hide");
+    //const a: Element | null = document.querySelector(".found-product");
+    //a?.textContent:= `Found: ${Array.from(document.getElementsByClassName("card-product")).length} pcs`;
+
   });
 
-  console.log(filter);
+  console.log("filter1:", filter1);
+  console.log("filter2:", filter2);
 }))
 
 buttonReset.addEventListener("click", () => {
@@ -225,5 +220,24 @@ buttonReset.addEventListener("click", () => {
   // document.querySelectorAll(".card-product") as NodeList<HTMLInputElement>
   Array.from(document.getElementsByClassName("checkbox") as HTMLCollectionOf<HTMLInputElement>).forEach(checkbox => checkbox.checked = false);
   document.querySelectorAll(".card-product").forEach((card) => card.classList.remove("hide"));
-  filter = new Set<string>();
+  filter1 = new Set<string>();
+  filter2 = new Set<string>();
 });
+
+document.querySelector(".input-search")?.addEventListener("input", (event) => {
+  const cards: NodeListOf<Element> = document.querySelectorAll(".card-product");
+  const target = event.target as HTMLInputElement;
+
+  cards.forEach((card) => {
+    const dataPrice = card.getAttribute("data-price") as string;
+    const dataRating = card.getAttribute("data-rating") as string;
+    const dataCategory = card.getAttribute("data-category") as string;
+    const dataBrand = card.getAttribute("data-brand") as string;
+
+    if (!(dataPrice.includes(target.value) || dataRating.includes(target.value) || dataCategory.includes(target.value.toLocaleUpperCase()) || dataBrand.includes(target.value.toLocaleUpperCase()))) {
+      card.classList.add("hide");
+    } else {
+      card.classList.remove("hide");
+    }
+  })
+})
