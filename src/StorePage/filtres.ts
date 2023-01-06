@@ -1,7 +1,4 @@
 import { priceMin, priceMax, stockMin, stockMax, sortedCategorySet, sortedBrandSet } from "../assets/scripts/findData";
-import { products } from "../assets/data/productsData";
-import { setProductsCard } from "./products";
-import { Products } from "../assets/scripts/findData";
 
 const fragmentStorePage = document.createDocumentFragment();
 export const divStorePage = document.createElement("div");
@@ -170,128 +167,63 @@ rangeContainerStock.appendChild(inputRangeMaxStock);
 
 document.querySelector("main")?.appendChild(fragmentStorePage);
 //
-const cards = document.querySelectorAll(".card-product");
-console.log(cards)
 const checkboxes: HTMLCollectionOf<Element> = document.getElementsByClassName("label-checkbox");
-const filter = new Set<string>();
+let filter = new Set<string>();
 
 Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change", (event) => {
-  const cards = document.querySelectorAll(".card-product");
-  //console.log(cards)
-
+  const cards: NodeListOf<Element> = document.querySelectorAll(".card-product");
   const checkboxText: string = checkbox.textContent?.trim() as string;
   const target = event.target as HTMLInputElement;
-  //const cc: Element | null = document.querySelector(".found-product");
-  //console.log(cc?.textContent)
 
-  Array.from(cards).forEach((card) => {
-    if ((card.getAttribute('data-category') !== checkboxText)) {
+  cards.forEach((card) => {
+    const dataCategory = card.getAttribute("data-category") as string;
+    const dataBrand = card.getAttribute("data-brand") as string;
+
+    if (checkboxText !== dataCategory) {
+      card.classList.add("hide");
       filter.add(checkboxText);
     }
 
-    if (filter.has(card.getAttribute('data-category') as string)) {
+    if (checkboxText !== dataBrand) {
+      card.classList.add("hide");
+      filter.add(checkboxText);
+    }
+
+    if (!target.checked) {
+      card.classList.remove("hide");
+      filter.delete(checkboxText);
+    }
+
+    if (filter.has(dataCategory)) {
+      if (filter.has(dataBrand)) {
+        card.classList.remove("hide");
+      }
+      card.classList.remove("hide");
+    } else if (filter.has(dataBrand)) {
+      if (filter.has(dataCategory)) {
+        card.classList.remove("hide");
+      }
       card.classList.remove("hide");
     } else {
       card.classList.add("hide");
     }
 
-
-    //Array.from(cards).forEach(card => card.classList.remove("hide"));
-
-    if (!target.checked) {
-      filter.delete(checkboxText);
+    if (filter.has(dataBrand) && filter.has(dataCategory)) {
       card.classList.remove("hide");
+    } else {
+      card.classList.add("hide");
     }
+
+    if (card.classList.contains("hide") && filter.size === 0) card.classList.remove("hide");
   });
 
-  console.log(filter)
-
+  console.log(filter);
 }))
 
-
-//console.log(Array.from(document.getElementsByClassName("card-product")).length)
-
-//const target: EventTarget | null = event.target;
-//console.log(target.checked)
-//const temp = [];
-//console.log(filter)
-
-//temp.push(checkbox.textContent?.trim())
-//console.log(temp)
-/*
-  Array.from(cards).forEach((card) => {
-    if (card.getAttribute('data-category') !== checkbox.textContent?.trim()) {
-      card.classList.add("hide");
-      //setProductsCard()
-    }
-    else {
-      //card.classList.remove("hide");
-      //card.classList.add("hide");
-
-      //card.classList.add("show");
-    }
-  })
-
-//console.log(element.getAttribute('data-category')?.trim()));
-//const target: EventTarget | null = event.target;
-//console.log(checkbox.textContent?.trim())
-}));
-*/
-//console.log(checkboxes[0].textContent?.trim())
-
-//const cards: HTMLCollectionOf<Element> = document.getElementsByClassName("card-product");
-
-//console.log(cards);
-
-//Array.from(cards).forEach((element) => console.log(element.getAttribute('data-category')?.trim()));
-//Array.from(cards).forEach((element) => console.log(element.textContent?.trim()));
-//Array.from(cards).forEach((element) => console.log(element));
-
-
-
-
-//Array.from(cards).forEach((element) => console.log(element.getAttribute('data-category')?.trim()));
-
-//console.log(Array.from(cards).filter((element) => element.getAttribute('data-category')?.trim()))
-
-//Number(prices[i].getAttribute("data-category"));
-//Number(prices[i].getAttribute("data-brand"));
-//Array.from(checkboxes).forEach(item => console.log(item));
-/*
-select.addEventListener("change", (event) => {
-  const target = event.target as HTMLSelectElement;
-  console.log(target.value)
-  const items = document.getElementsByClassName("card-product");
-
-  if (target.value === "sort by price min") {
-    const minPrice = products.sort((a, b) => a.price - b.price);
-    removeNodes(items);
-    setProductsCard(minPrice);
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
-  } else if (target.value === "sort by price max") {
-    const maxPrice = products.sort((a, b) => b.price - a.price);
-    removeNodes(items);
-    setProductsCard(maxPrice);
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
-  } else if (target.value === "sort by rating min") {
-    const minRating = products.sort((a, b) => a.rating - b.rating);
-    removeNodes(items);
-    setProductsCard(minRating);
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
-  } else if (target.value === "sort by rating max") {
-    const maxRating = products.sort((a, b) => b.rating - a.rating);
-    removeNodes(items);
-    setProductsCard(maxRating);
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
-  } else if (target.value === "sort") {
-    removeNodes(items);
-    setProductsCard(products);
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    getCartCounter();
-  }
+buttonReset.addEventListener("click", () => {
+  // const checkboxes = document.getElementsByClassName("checkbox") as HTMLCollectionOf<HTMLInputElement>;
+  // document.querySelectorAll(".card-product") as NodeList<HTMLInputElement>
+  Array.from(document.getElementsByClassName("checkbox") as HTMLCollectionOf<HTMLInputElement>).forEach(checkbox => checkbox.checked = false);
+  document.querySelectorAll(".card-product").forEach((card) => card.classList.remove("hide"));
+  filter = new Set<string>();
 });
-*/
