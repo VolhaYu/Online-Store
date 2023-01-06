@@ -172,39 +172,49 @@ let filter1 = new Set<string>();
 let filter2 = new Set<string>();
 
 Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change", (event) => {
-  const cards: NodeListOf<Element> = document.querySelectorAll(".card-product");
+  //const cards: HTMLCollectionOf<Element> = document.getElementsByClassName("card-product");
+  const cards = document.querySelectorAll<HTMLElement>(".card-product");
   const checkboxText: string = checkbox.textContent?.trim() as string;
   const target = event.target as HTMLInputElement;
 
-  cards.forEach((card) => {
+  Array.from(cards).forEach((card) => {
     const dataCategory = card.getAttribute("data-category") as string;
     const dataBrand = card.getAttribute("data-brand") as string;
 
     if ((checkboxText !== dataCategory)) {
       card.classList.add("hide");
+      card.style.display = "none"
       filter1.add(checkboxText);
     }
 
     if ((checkboxText !== dataBrand)) {
       card.classList.add("hide");
+      card.style.display = "none"
       filter1.add(checkboxText);
     }
 
     if (!target.checked) {
       card.classList.remove("hide");
+      card.style.display = "flex"
       filter1.delete(checkboxText);
     }
 
     if (filter1.has(dataCategory) && filter1.has(dataBrand)) {
       card.classList.remove("hide");
+      card.style.display = "flex"
       // eslint-disable-next-line no-dupe-else-if
     } else if (filter1.has(dataCategory) || filter1.has(dataBrand)) {
       card.classList.remove("hide");
+      card.style.display = "flex"
     } else {
       card.classList.add("hide");
+      card.style.display = "none"
     }
 
-    if (card.classList.contains("hide") && filter1.size === 0) card.classList.remove("hide");
+    if (card.classList.contains("hide") && filter1.size === 0) {
+      card.classList.remove("hide");
+      card.style.display = "flex";
+    }
 
     //const a: Element | null = document.querySelector(".found-product");
     //a?.textContent:= `Found: ${Array.from(document.getElementsByClassName("card-product")).length} pcs`;
@@ -219,25 +229,31 @@ buttonReset.addEventListener("click", () => {
   // const checkboxes = document.getElementsByClassName("checkbox") as HTMLCollectionOf<HTMLInputElement>;
   // document.querySelectorAll(".card-product") as NodeList<HTMLInputElement>
   Array.from(document.getElementsByClassName("checkbox") as HTMLCollectionOf<HTMLInputElement>).forEach(checkbox => checkbox.checked = false);
-  document.querySelectorAll(".card-product").forEach((card) => card.classList.remove("hide"));
+  document.querySelectorAll<HTMLElement>(".card-product").forEach((card) => {
+    card.classList.remove("hide");
+    card.style.display = "flex";
+  });
   filter1 = new Set<string>();
   filter2 = new Set<string>();
 });
 
 document.querySelector(".input-search")?.addEventListener("input", (event) => {
-  const cards: NodeListOf<Element> = document.querySelectorAll(".card-product");
+  //const cards: HTMLCollectionOf<Element> = document.getElementsByClassName("card-product");
+  const cards = document.querySelectorAll<HTMLElement>(".card-product");
   const target = event.target as HTMLInputElement;
 
-  cards.forEach((card) => {
+  Array.from(cards).forEach((card) => {
     const dataPrice = card.getAttribute("data-price") as string;
     const dataRating = card.getAttribute("data-rating") as string;
     const dataCategory = card.getAttribute("data-category") as string;
     const dataBrand = card.getAttribute("data-brand") as string;
 
     if (!(dataPrice.includes(target.value) || dataRating.includes(target.value) || dataCategory.includes(target.value.toLocaleUpperCase()) || dataBrand.includes(target.value.toLocaleUpperCase()))) {
-      card.classList.add("hide");
+      //card.classList.add("hide");
+      card.style.display = "none"
     } else {
-      card.classList.remove("hide");
+      card.style.display = "flex"
+      //card.classList.remove("hide");
     }
   })
 })
