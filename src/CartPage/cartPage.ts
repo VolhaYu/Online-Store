@@ -1,21 +1,20 @@
 import "./cartPage.css";
 import { products } from "../assets/data/productsData";
-// import { divStorePage } from "../StorePage/filtres";
-// import { divDescriptiontPage } from "../descriptionPage/productDescription";
+import { objCart } from "../cartPageWork";
 
-export interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: [string];
-}
+// interface Product {
+//   id: number;
+//   title: string;
+//   description: string;
+//   price: number;
+//   discountPercentage: number;
+//   rating: number;
+//   stock: number;
+//   brand: string;
+//   category: string;
+//   thumbnail: string;
+//   images: [string];
+// }
 const fragmentCartPage = document.createDocumentFragment();
 export const divCartPage = document.createElement("div");
 divCartPage.classList.add("cart-page");
@@ -29,7 +28,7 @@ divCartPage.appendChild(emptyCart);
 export const cartWrapper = document.createElement("div");
 cartWrapper.classList.add("cart-wrapper");
 
-const inCart = document.createElement("div");
+export const inCart = document.createElement("div");
 inCart.classList.add("in-cart");
 cartWrapper.appendChild(inCart);
 
@@ -44,12 +43,6 @@ productsInCart.appendChild(titleCart);
 export function showInCart(n: number) {
   const inCartItem = document.createElement("div");
   inCartItem.classList.add("in-cart__item");
-  inCart.appendChild(inCartItem);
-
-  const cartItemNumber = document.createElement("div");
-  cartItemNumber.classList.add("cart-item__number");
-  cartItemNumber.textContent = `${1}`;
-  inCartItem.appendChild(cartItemNumber);
 
   const inCartPhoto = document.createElement("img");
   inCartPhoto.classList.add("in-cart__photo");
@@ -90,23 +83,49 @@ export function showInCart(n: number) {
   inCartPrice.textContent = `Price: $${products[n].price}`;
   inCartDescription.appendChild(inCartPrice);
 
+  let amount = 1;
+
   const numberControl = document.createElement("div");
   numberControl.classList.add("number-control");
   inCartItem.appendChild(numberControl);
-  numberControl.textContent = "1";
 
   const buttonPlus = document.createElement("button");
   buttonPlus.classList.add("button-plus", "button");
   buttonPlus.textContent = "+";
-  numberControl.prepend(buttonPlus);
+  numberControl.appendChild(buttonPlus);
+
+  buttonPlus.addEventListener("click", () => {
+    number.textContent = `${amount += 1}`;
+    console.log("click", amount);
+  });
+
+  const number = document.createElement("p");
+  number.classList.add("number-amount");
+  number.textContent = `${amount}`;
+  numberControl.appendChild(number);
 
   const buttonMinus = document.createElement("button");
   buttonMinus.classList.add("button-minus", "button");
   buttonMinus.textContent = "-";
   numberControl.appendChild(buttonMinus);
-}
-export function removeInCart(n: number) {
-  document.querySelectorAll(".in-cart__item")[n].innerHTML = " ";
+
+  buttonMinus.addEventListener("click", () => {
+    number.textContent = `${amount -= 1}`;
+    console.log("click", amount);
+    if (amount === 0) {
+      const counter = document.querySelector(".shoping-cart__number") as HTMLElement;
+      counter.textContent = `${Number(counter.textContent) - 1}`;
+      console.log(counter.textContent);
+      inCart.removeChild(inCartItem);
+      delete objCart[`${n}`];
+      console.log(objCart);
+      if (counter.textContent === "0") {
+        emptyCart.style.display = "block";
+        divCartPage.removeChild(cartWrapper);
+      }
+    }
+  });
+  return inCartItem;
 }
 
 const totalSum = document.createElement("div");
@@ -130,4 +149,10 @@ const buttonBuy = document.createElement("button");
 buttonBuy.classList.add("button-buy");
 buttonBuy.textContent = "buy now";
 totalSum.appendChild(buttonBuy);
+
+export function getCount(count: number, totalcount: number) {
+  productNumber.textContent = `Products: ${count}`;
+  total.textContent = `Total:${totalcount}`;
+
+}
 

@@ -24,7 +24,6 @@ pathToProduct.appendChild(p1);
 
 const linkCategory = document.createElement("a");
 linkCategory.classList.add("description-page__links");
-// linkCategory.setAttribute("href", "#");
 pathToProduct.appendChild(linkCategory);
 
 const p2 = document.createElement("p");
@@ -33,7 +32,6 @@ pathToProduct.appendChild(p2);
 
 const linkBrand = document.createElement("a");
 linkBrand.classList.add("description-page__links");
-// linkBrand.setAttribute("href", "#");
 pathToProduct.appendChild(linkBrand);
 
 const p3 = document.createElement("p");
@@ -42,7 +40,6 @@ pathToProduct.appendChild(p3);
 
 const linkTitle = document.createElement("a");
 linkTitle.classList.add("description-page__links");
-// linkTitle.setAttribute("href", "#");
 pathToProduct.appendChild(linkTitle);
 
 const titleDescription = document.createElement("h2");
@@ -102,15 +99,12 @@ addToCart.appendChild(priceInfo);
 
 export const addToCartButton: HTMLButtonElement = document.createElement("button");
 addToCartButton.classList.add("button-to-cart", "add-to-cart__button");
-// addToCartButton.textContent = "add to cart";
 addToCart.appendChild(addToCartButton);
 
 const buyNowButton = document.createElement("button");
 buyNowButton.classList.add("add-to-cart__button");
 buyNowButton.textContent = "Buy Now";
 addToCart.appendChild(buyNowButton);
-
-
 
 function getSliderImage(n: number) {
   for (let j = 1; j < products[n].images.length; j++) {
@@ -143,15 +137,19 @@ function getProductInfo() {
       priceInfo.textContent = `$${products[i].price}`;
       addToCartButton.setAttribute("value", `${products[i].id}`);
       addToCartButton.textContent = buttunToCart[i].textContent;
+      if (buttunToCart[i].textContent === "In cart") {
+        addToCartButton.classList.add("button-to-cart-active");
+      } else {
+        addToCartButton.classList.remove("button-to-cart-active");
+      }
       if (addToCartButton.textContent === "In cart") {
         buttunToCart[i].classList.add("button-to-cart-active");
       } else {
         buttunToCart[i].classList.remove("button-to-cart-active");
       }
+      getCartCounterDescription(i);
       getSliderImage(i);
       bigImg();
-
-      getCartCounterDescription(i);
       return products[i];
     });
   }
@@ -161,7 +159,6 @@ getProductInfo();
 let isBig = false;
 function bigImg() {
   const slideImage = document.querySelectorAll(".slide-img");
-  console.log(slideImage);
   for (let i = 0; i < slideImage.length; i++) {
     slideImage[i].addEventListener("click", () => {
       slideImage.forEach(el => {

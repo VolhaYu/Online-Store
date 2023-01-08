@@ -38,6 +38,7 @@ h2 {
 
 .in-cart {
     width: 69%;
+    height: fit-content;
 }
 
 .cart-item__number {
@@ -85,7 +86,8 @@ h2 {
 
 .total-sum {
     width: 29%;
-    height: 400px;
+    min-height: 300px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
