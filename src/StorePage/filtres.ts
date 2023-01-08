@@ -216,11 +216,11 @@ Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change",
       card.style.display = "flex";
     }
 
+
     //const a: Element | null = document.querySelector(".found-product");
     //a?.textContent:= `Found: ${Array.from(document.getElementsByClassName("card-product")).length} pcs`;
 
   });
-
   console.log("filter1:", filter1);
   console.log("filter2:", filter2);
 }))
@@ -255,5 +255,6 @@ document.querySelector(".input-search")?.addEventListener("input", (event) => {
       card.style.display = "flex"
       //card.classList.remove("hide");
     }
+    // console.log(cardsProducts.children.length);
   })
 })

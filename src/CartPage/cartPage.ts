@@ -153,6 +153,5 @@ totalSum.appendChild(buttonBuy);
 export function getCount(count: number, totalcount: number) {
   productNumber.textContent = `Products: ${count}`;
   total.textContent = `Total:${totalcount}`;
-
 }
 

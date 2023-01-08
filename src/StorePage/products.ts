@@ -1,5 +1,3 @@
-import { emptyCart, divCartPage, cartWrapper, showInCart } from "../CartPage/cartPage";
-import { addToCartButton, divDescriptiontPage } from "../descriptionPage/productDescription";
 import { divStorePage } from "./filtres";
 import { products } from "../assets/data/productsData";
 import { Products } from "../assets/scripts/findData";
@@ -89,6 +87,7 @@ const productImg = document.getElementsByClassName("product__img");
 const productDescription = document.getElementsByClassName("product__description");
 const infoProduct = document.getElementsByClassName("product__info");
 
+console.log(productImg)
 setProductsCard(products);
 
 switchView(cardProduct)
@@ -182,96 +181,35 @@ select.addEventListener("change", (event) => {
   if (target.value === "sort by price min") {
     const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-price")) - Number(b.getAttribute("data-price")));
     sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
+    // if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
     //getCartCounter();
   } else if (target.value === "sort by price max") {
     const sorted = Array.from(items).sort((a: Element, b: Element) => Number(b.getAttribute("data-price")) - Number(a.getAttribute("data-price")));
     sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
+    // if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
     //getCartCounter();
   } else if (target.value === "sort by rating min") {
     const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-rating")) - Number(b.getAttribute("data-rating")));
     sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
+    // if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
     //getCartCounter();
   } else if (target.value === "sort by rating max") {
     const sorted = Array.from(items).sort((a: Element, b: Element) => Number(b.getAttribute("data-rating")) - Number(a.getAttribute("data-rating")));
     sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
-    if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
+    // if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
     //getCartCounter();
   }
 });
 
-function setViewRow(items: HTMLCollectionOf<Element>) {
-  for (let i = 0; i < items.length; i++) {
-    items[i].classList.add("card-product_inLine");
-    productImg[i].classList.add("product__img_inLine");
-    productDescription[i].classList.add("product__description_inLine");
-    infoProduct[i].classList.add("product__info_inline");
-  }
-}
-
-<<<<<<< HEAD
-export { setProductsCard };
-=======
-const cartCounter = document.querySelector(".shoping-cart__number") as HTMLElement;
-const headerTotal = document.querySelector(".header__p") as HTMLElement;
-let counter = 0;
-const totalCounter = 0;
-let total = totalCounter;
-
-function getCartCounter() {
-  const buttunToCart = document.getElementsByClassName("button-to-cart");
-  Array.from(buttunToCart).forEach((button, i) => button.addEventListener("click", () => {
-    emptyCart.style.display = "none";
-    divCartPage.appendChild(cartWrapper);
-    button.classList.toggle("button-to-cart-active");
-    showInCart(i);
-
-    const prices = document.getElementsByClassName("product__price");
-
-    if (button.textContent === "Add to cart") {
-      button.textContent = "In cart";
-      counter++;
-      total += Number(prices[i].getAttribute("data-price"));
-    } else {
-      button.textContent = "Add to cart";
-      counter--;
-      total -= Number(prices[i].getAttribute("data-price"));
-    }
-
-    cartCounter.textContent = `${counter}`;
-    headerTotal.textContent = `Grand total: $ ${total}`;
-  }))
-}
-
-getCartCounter();
-
-export function getCartCounterDescription(n: number) {
-  const buttunToCart = document.getElementsByClassName("button-to-cart");
-  if (document.querySelector("main")?.appendChild(divDescriptiontPage)) {
-    addToCartButton.addEventListener("click", () => {
-      addToCartButton.classList.toggle("button-to-cart-active");
-      if (addToCartButton.textContent === "in cart") {
-        addToCartButton.textContent = "add to cart";
-        counter--;
-        total -= - Number(products[n].price);
-      } else {
-        addToCartButton.textContent = "in cart";
-        counter++;
-        total += Number(products[n].price);
-      }
-      buttunToCart[n].textContent = addToCartButton.textContent;
-      buttunToCart[n].classList.toggle("button-to-cart-active");
-      cartCounter.textContent = `${counter}`;
-      headerTotal.textContent = `Grand total: $ ${total}`;
-      return addToCartButton;
-    });
-  }
-}
-// getCartCounterDescription();
+// function setViewRow(items: HTMLCollectionOf<Element>) {
+//   for (let i = 0; i < items.length; i++) {
+//     items[i].classList.add("card-product_inLine");
+//     productImg[i].classList.add("product__img_inLine");
+//     productDescription[i].classList.add("product__description_inLine");
+//     infoProduct[i].classList.add("product__info_inline");
+//   }
+// }
 
 foundProduct.textContent = `Found: ${Array.from(document.getElementsByClassName("card-product")).length} pcs`;
 
-export { setProductsCard, getCartCounter, totalCounter };
->>>>>>> d4b17e6b (feat: add card-counter)
+export { setProductsCard, productImg, cardsProducts };

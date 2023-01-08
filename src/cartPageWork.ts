@@ -9,6 +9,7 @@ export let counter = 0;
 export let totalCounter = 0;
 
 export const objCart: { [key: string]: HTMLDivElement } = {};
+console.log("hi");
 
 (function getCartCounter() {
   for (let i = 0; i < buttunToCart.length; i++) {
