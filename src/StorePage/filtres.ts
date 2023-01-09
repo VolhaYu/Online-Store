@@ -167,6 +167,7 @@ rangeContainerStock.appendChild(inputRangeMaxStock);
 
 document.querySelector("main")?.appendChild(fragmentStorePage);
 //
+
 const checkboxes: HTMLCollectionOf<Element> = document.getElementsByClassName("label-checkbox");
 const filter1 = new Set<string>();
 const filter2 = new Set<string>();
@@ -215,6 +216,9 @@ Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change",
       card.classList.remove("hide");
       card.style.display = "flex";
     }
+    const foundProduct = document.querySelector(".found-product");
+    found = Array.from(cards).filter(card => card.style.display === "flex").length;
+    if (foundProduct != undefined) foundProduct.textContent = `Found: ${found} pcs`;
   });
   console.log("filter1:", filter1);
   console.log("filter2:", filter2);
@@ -227,6 +231,7 @@ buttonReset.addEventListener("click", () => {
     card.style.display = "flex";
     filter1.clear();
   });
+  location.reload();
 });
 
 document.querySelector(".input-search")?.addEventListener("input", (event) => {
@@ -248,4 +253,8 @@ document.querySelector(".input-search")?.addEventListener("input", (event) => {
       //card.classList.remove("hide");
     }
   });
+  const foundProduct = document.querySelector(".found-product");
+  found = Array.from(cards).filter(card => card.style.display === "flex").length;
+  if (foundProduct != undefined) foundProduct.textContent = `Found: ${found} pcs`;
 });
+let found = 100;
