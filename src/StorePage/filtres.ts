@@ -168,8 +168,8 @@ rangeContainerStock.appendChild(inputRangeMaxStock);
 document.querySelector("main")?.appendChild(fragmentStorePage);
 //
 const checkboxes: HTMLCollectionOf<Element> = document.getElementsByClassName("label-checkbox");
-let filter1 = new Set<string>();
-let filter2 = new Set<string>();
+const filter1 = new Set<string>();
+const filter2 = new Set<string>();
 
 Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change", (event) => {
   //const cards: HTMLCollectionOf<Element> = document.getElementsByClassName("card-product");
@@ -215,26 +215,18 @@ Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change",
       card.classList.remove("hide");
       card.style.display = "flex";
     }
-
-
-    //const a: Element | null = document.querySelector(".found-product");
-    //a?.textContent:= `Found: ${Array.from(document.getElementsByClassName("card-product")).length} pcs`;
-
   });
   console.log("filter1:", filter1);
   console.log("filter2:", filter2);
-}))
+}));
 
 buttonReset.addEventListener("click", () => {
-  // const checkboxes = document.getElementsByClassName("checkbox") as HTMLCollectionOf<HTMLInputElement>;
-  // document.querySelectorAll(".card-product") as NodeList<HTMLInputElement>
-  Array.from(document.getElementsByClassName("checkbox") as HTMLCollectionOf<HTMLInputElement>).forEach(checkbox => checkbox.checked = false);
-  document.querySelectorAll<HTMLElement>(".card-product").forEach((card) => {
-    card.classList.remove("hide");
+  console.log("click");
+  const cards = document.querySelectorAll<HTMLElement>(".card-product");
+  Array.from(cards).forEach((card) => {
     card.style.display = "flex";
+    filter1.clear();
   });
-  filter1 = new Set<string>();
-  filter2 = new Set<string>();
 });
 
 document.querySelector(".input-search")?.addEventListener("input", (event) => {
@@ -255,6 +247,5 @@ document.querySelector(".input-search")?.addEventListener("input", (event) => {
       card.style.display = "flex"
       //card.classList.remove("hide");
     }
-    // console.log(cardsProducts.children.length);
-  })
-})
+  });
+});

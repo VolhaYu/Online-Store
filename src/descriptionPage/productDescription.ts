@@ -99,8 +99,8 @@ const priceInfo = document.createElement("p");
 priceInfo.classList.add("price-info");
 addToCart.appendChild(priceInfo);
 
-export const addToCartButton: HTMLButtonElement = document.createElement("button");
-addToCartButton.classList.add("button-to-cart", "add-to-cart__button");
+export const addToCartButton: HTMLElement = document.createElement("button");
+addToCartButton.classList.add("add-to-cart__button");
 addToCart.appendChild(addToCartButton);
 
 const buyNowButton = document.createElement("button");
@@ -116,8 +116,6 @@ function getSliderImage(n: number) {
     wrapSlideImage.appendChild(slideImage);
   }
 }
-
-// export const imgClick = document.querySelectorAll(".product__img");
 
 function getProductInfo() {
   for (let i = 0; i < productImg.length; i++) {
@@ -139,17 +137,6 @@ function getProductInfo() {
       priceInfo.textContent = `$${products[i].price}`;
       addToCartButton.setAttribute("value", `${products[i].id}`);
       addToCartButton.textContent = buttunToCart[i].textContent;
-
-      if (buttunToCart[i].textContent === "in cart") {
-        addToCartButton.classList.add("button-to-cart-active");
-      } else {
-        addToCartButton.classList.remove("button-to-cart-active");
-      }
-      if (addToCartButton.textContent === "In cart") {
-        buttunToCart[i].classList.add("button-to-cart-active");
-      } else {
-        buttunToCart[i].classList.remove("button-to-cart-active");
-      }
       getSliderImage(i);
       bigImg();
       getCartCounterDescription(i);

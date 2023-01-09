@@ -3,13 +3,12 @@ import { products } from "./assets/data/productsData";
 import { addToCartButton, divDescriptiontPage } from "./descriptionPage/productDescription";
 
 export const buttunToCart = document.querySelectorAll(".button-to-cart");
-const cartCounter = document.querySelector(".shoping-cart__number") as HTMLElement;
-const headerTotal = document.querySelector(".header__p") as HTMLElement;
+export const cartCounter = document.querySelector(".shoping-cart__number") as HTMLElement;
+export const headerTotal = document.querySelector(".header__p") as HTMLElement;
 export let counter = 0;
 export let totalCounter = 0;
 
 export const objCart: { [key: string]: HTMLDivElement } = {};
-console.log("hi");
 
 (function getCartCounter() {
   for (let i = 0; i < buttunToCart.length; i++) {
@@ -18,16 +17,19 @@ console.log("hi");
       divCartPage.appendChild(cartWrapper);
       console.log(`${i}` in objCart);
       if (`${i}` in objCart === false) {
-        objCart[`${i}`] = showInCart(i);
+        counter = counter + 1;
+        totalCounter = totalCounter + Number(products[i].price);
+        objCart[`${i}`] = showInCart(i, counter, totalCounter);
         inCart.appendChild(objCart[`${i}`] as HTMLDivElement);
         console.log(objCart);
         buttunToCart[i].textContent = "In cart";
         buttunToCart[i].classList.add("button-to-cart-active");
         addToCartButton.textContent = "In cart";
         addToCartButton.classList.add("button-to-cart-active");
-        counter = counter + 1;
-        totalCounter = totalCounter + Number(products[i].price);
+
       } else {
+        counter = counter - 1;
+        totalCounter = totalCounter - Number(products[i].price);
         inCart.removeChild(objCart[`${i}`]);
         delete objCart[`${i}`];
         console.log(objCart);
@@ -35,8 +37,7 @@ console.log("hi");
         addToCartButton.textContent = "Add to cart";
         buttunToCart[i].classList.remove("button-to-cart-active");
         addToCartButton.classList.remove("button-to-cart-active");
-        counter = counter - 1;
-        totalCounter = totalCounter - Number(products[i].price);
+
       }
       cartCounter.textContent = `${counter}`;
       headerTotal.textContent = `Grand total: $${totalCounter}`;
@@ -56,6 +57,8 @@ export function getCartCounterDescription(n: number) {
     addToCartButton.addEventListener("click", () => {
       console.log(`${n}` in objCart);
       if (`${n}` in objCart === true) {
+        counter = counter - 1;
+        totalCounter = totalCounter - Number(products[n].price);
         inCart.removeChild(objCart[`${n}`]);
         delete objCart[`${n}`];
         console.log(objCart);
@@ -63,10 +66,11 @@ export function getCartCounterDescription(n: number) {
         buttunToCart[n].textContent = "Add to cart";
         addToCartButton.classList.remove("button-to-cart-active");
         buttunToCart[n].classList.remove("button-to-cart-active");
-        counter = counter - 1;
-        totalCounter = totalCounter - Number(products[n].price);
+
       } else {
-        objCart[`${n}`] = showInCart(n);
+        counter = counter + 1;
+        totalCounter = totalCounter + Number(products[n].price);
+        objCart[`${n}`] = showInCart(n, counter, totalCounter);
         inCart.appendChild(objCart[`${n}`] as HTMLDivElement);
         console.log(objCart);
         emptyCart.style.display = "none";
@@ -75,8 +79,6 @@ export function getCartCounterDescription(n: number) {
         buttunToCart[n].textContent = "In cart";
         addToCartButton.classList.add("button-to-cart-active");
         buttunToCart[n].classList.add("button-to-cart-active");
-        counter = counter + 1;
-        totalCounter = totalCounter + Number(products[n].price);
       }
       cartCounter.textContent = `${counter}`;
       headerTotal.textContent = `Grand total: $${totalCounter}`;

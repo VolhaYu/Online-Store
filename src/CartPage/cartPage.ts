@@ -1,20 +1,8 @@
 import "./cartPage.css";
 import { products } from "../assets/data/productsData";
-import { objCart } from "../cartPageWork";
+import { objCart, cartCounter, headerTotal, buttunToCart } from "../cartPageWork";
+import { addToCartButton } from "../descriptionPage/productDescription";
 
-// interface Product {
-//   id: number;
-//   title: string;
-//   description: string;
-//   price: number;
-//   discountPercentage: number;
-//   rating: number;
-//   stock: number;
-//   brand: string;
-//   category: string;
-//   thumbnail: string;
-//   images: [string];
-// }
 const fragmentCartPage = document.createDocumentFragment();
 export const divCartPage = document.createElement("div");
 divCartPage.classList.add("cart-page");
@@ -40,7 +28,29 @@ const titleCart = document.createElement("h2");
 titleCart.textContent = "Products In Cart";
 productsInCart.appendChild(titleCart);
 
-export function showInCart(n: number) {
+const totalSum = document.createElement("div");
+totalSum.classList.add("total-sum");
+cartWrapper.appendChild(totalSum);
+
+export const productNumber = document.createElement("p");
+productNumber.classList.add("product-number");
+totalSum.appendChild(productNumber);
+
+export const total = document.createElement("p");
+total.classList.add("total");
+totalSum.appendChild(total);
+
+const inputPromo = document.createElement("input");
+inputPromo.classList.add("input-promo");
+inputPromo.setAttribute("type", "text");
+totalSum.appendChild(inputPromo);
+
+const buttonBuy = document.createElement("button");
+buttonBuy.classList.add("button-buy");
+buttonBuy.textContent = "buy now";
+totalSum.appendChild(buttonBuy);
+
+export function showInCart(n: number, count: number, totalcount: number) {
   const inCartItem = document.createElement("div");
   inCartItem.classList.add("in-cart__item");
 
@@ -96,7 +106,13 @@ export function showInCart(n: number) {
 
   buttonPlus.addEventListener("click", () => {
     number.textContent = `${amount += 1}`;
-    console.log("click", amount);
+    count += 1;
+    totalcount += Number(products[n].price);
+    cartCounter.textContent = `${count}`;
+    headerTotal.textContent = `Grand total: $${totalcount}`;
+    productNumber.textContent = `Products: ${count}`;
+    total.textContent = `Total:${totalcount}`;
+    console.log(count, totalcount);
   });
 
   const number = document.createElement("p");
@@ -111,47 +127,35 @@ export function showInCart(n: number) {
 
   buttonMinus.addEventListener("click", () => {
     number.textContent = `${amount -= 1}`;
-    console.log("click", amount);
+    count -= 1;
+    totalcount -= Number(products[n].price);
+    cartCounter.textContent = `${count}`;
+    headerTotal.textContent = `Grand total: $${totalcount}`;
+    productNumber.textContent = `Products: ${count}`;
+    total.textContent = `Total:${totalcount}`;
+    console.log(count, totalcount);
     if (amount === 0) {
-      const counter = document.querySelector(".shoping-cart__number") as HTMLElement;
-      counter.textContent = `${Number(counter.textContent) - 1}`;
-      console.log(counter.textContent);
       inCart.removeChild(inCartItem);
       delete objCart[`${n}`];
+      buttunToCart[n].textContent = "Add to cart";
+      addToCartButton.textContent = "Add to cart";
+      buttunToCart[n].classList.remove("button-to-cart-active");
+      addToCartButton.classList.remove("button-to-cart-active");
       console.log(objCart);
-      if (counter.textContent === "0") {
-        emptyCart.style.display = "block";
-        divCartPage.removeChild(cartWrapper);
-      }
+    }
+    if (count === 0) {
+      emptyCart.style.display = "block";
+      divCartPage.removeChild(cartWrapper);
     }
   });
+  productNumber.textContent = `Products: ${count}`;
+  total.textContent = `Total:${totalcount}`;
+  cartCounter.textContent = `${count}`;
+  headerTotal.textContent = `Grand total: $${totalcount}`;
   return inCartItem;
 }
 
-const totalSum = document.createElement("div");
-totalSum.classList.add("total-sum");
-cartWrapper.appendChild(totalSum);
-
-export const productNumber = document.createElement("p");
-productNumber.classList.add("product-number");
-totalSum.appendChild(productNumber);
-
-export const total = document.createElement("p");
-total.classList.add("total");
-totalSum.appendChild(total);
-
-const inputPromo = document.createElement("input");
-inputPromo.classList.add("input-promo");
-inputPromo.setAttribute("type", "text");
-totalSum.appendChild(inputPromo);
-
-const buttonBuy = document.createElement("button");
-buttonBuy.classList.add("button-buy");
-buttonBuy.textContent = "buy now";
-totalSum.appendChild(buttonBuy);
-
 export function getCount(count: number, totalcount: number) {
-  productNumber.textContent = `Products: ${count}`;
+  productNumber.textContent = `Products: ${cartCounter.textContent}`;
   total.textContent = `Total:${totalcount}`;
 }
-
