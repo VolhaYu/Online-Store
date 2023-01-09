@@ -235,7 +235,6 @@ buttonReset.addEventListener("click", () => {
 });
 
 document.querySelector(".input-search")?.addEventListener("input", (event) => {
-  //const cards: HTMLCollectionOf<Element> = document.getElementsByClassName("card-product");
   const cards = document.querySelectorAll<HTMLElement>(".card-product");
   const target = event.target as HTMLInputElement;
 
@@ -246,11 +245,9 @@ document.querySelector(".input-search")?.addEventListener("input", (event) => {
     const dataBrand = card.getAttribute("data-brand") as string;
 
     if (!(dataPrice.includes(target.value) || dataRating.includes(target.value) || dataCategory.includes(target.value.toLocaleUpperCase()) || dataBrand.includes(target.value.toLocaleUpperCase()))) {
-      //card.classList.add("hide");
       card.style.display = "none"
     } else {
       card.style.display = "flex"
-      //card.classList.remove("hide");
     }
   });
   const foundProduct = document.querySelector(".found-product");
