@@ -13,12 +13,12 @@ divProducts.appendChild(sortProducts);
 const form = document.createElement("form");
 sortProducts.appendChild(form);
 
-const select = document.createElement("select");
+export const select = document.createElement("select");
 select.classList.add("select");
 form.appendChild(select);
 
 const option1 = document.createElement("option");
-option1.setAttribute("selected", "");
+option1.setAttribute("selected", "selected");
 option1.textContent = "sort:";
 select.appendChild(option1);
 
@@ -38,8 +38,9 @@ const sortRatingMax = document.createElement("option");
 sortRatingMax.textContent = "sort by rating max";
 select.appendChild(sortRatingMax);
 
-const foundProduct = document.createElement("p");
+export const foundProduct = document.createElement("p");
 foundProduct.classList.add("found-product");
+foundProduct.textContent = "Found: 100 pcs"
 sortProducts.appendChild(foundProduct);
 
 const wrapRadio = document.createElement("div");
@@ -92,7 +93,7 @@ setProductsCard(products);
 
 switchView(cardProduct)
 
-function setProductsCard(items: Array<Products>) {
+export function setProductsCard(items: Array<Products>) {
   for (const product of items) {
     const cardProduct = document.createElement("div");
     cardProduct.classList.add("card-product");
@@ -174,42 +175,6 @@ function switchView(items: HTMLCollectionOf<Element>) {
   });
 }
 
-select.addEventListener("change", (event) => {
-  const target = event.target as HTMLSelectElement;
-  const items = document.getElementsByClassName("card-product");
 
-  if (target.value === "sort by price min") {
-    const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-price")) - Number(b.getAttribute("data-price")));
-    sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
-    // if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    //getCartCounter();
-  } else if (target.value === "sort by price max") {
-    const sorted = Array.from(items).sort((a: Element, b: Element) => Number(b.getAttribute("data-price")) - Number(a.getAttribute("data-price")));
-    sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
-    // if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    //getCartCounter();
-  } else if (target.value === "sort by rating min") {
-    const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-rating")) - Number(b.getAttribute("data-rating")));
-    sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
-    // if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    //getCartCounter();
-  } else if (target.value === "sort by rating max") {
-    const sorted = Array.from(items).sort((a: Element, b: Element) => Number(b.getAttribute("data-rating")) - Number(a.getAttribute("data-rating")));
-    sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
-    // if (cardsProducts.classList.contains("cards-products_inLine")) setViewRow(items);
-    //getCartCounter();
-  }
-});
 
-// function setViewRow(items: HTMLCollectionOf<Element>) {
-//   for (let i = 0; i < items.length; i++) {
-//     items[i].classList.add("card-product_inLine");
-//     productImg[i].classList.add("product__img_inLine");
-//     productDescription[i].classList.add("product__description_inLine");
-//     infoProduct[i].classList.add("product__info_inline");
-//   }
-// }
-
-foundProduct.textContent = `Found: ${Array.from(document.getElementsByClassName("card-product")).length} pcs`;
-
-export { setProductsCard, productImg, cardsProducts };
+export { productImg, cardsProducts };

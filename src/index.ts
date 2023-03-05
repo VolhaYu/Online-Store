@@ -8,6 +8,7 @@ import "./descriptionPage/productDescription";
 import "./StorePage/filtres";
 import "./StorePage/products";
 import "./StorePage/storePage.css";
+import "./StorePage/filtresLogik";
 
 import "./assets/data/productsData";
 import "./assets/scripts/findData";
