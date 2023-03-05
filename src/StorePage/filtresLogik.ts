@@ -1,5 +1,5 @@
 import { select } from './products';
-import { buttonReset } from './filtres';
+import { buttonReset, buttonCopy } from './filtres';
 
 const items = document.getElementsByClassName("card-product") as HTMLCollectionOf<HTMLElement>;
 
@@ -118,3 +118,22 @@ function showFoundProduct() {
   found = Array.from(cards).filter(card => card.style.display === "flex").length;
   if (foundProduct != undefined) foundProduct.textContent = `Found: ${found} pcs`;
 }
+
+function copyUrl() {
+  buttonCopy.addEventListener('click', () => {
+    buttonCopy.style.background='#C6C6C6';
+    setTimeout(() => buttonCopy.style.background='buttonface', 500);
+    const copy = window.location.href;
+    console.log(copy);
+    const tmp   = document.createElement('INPUT') as HTMLInputElement, 
+    focus = document.activeElement as HTMLInputElement;
+    tmp.value = copy;
+    document.body.appendChild(tmp);
+    tmp.select();
+    document.execCommand("copy");
+    document.body.removeChild(tmp);
+    focus.focus();
+  });
+}
+copyUrl();
+

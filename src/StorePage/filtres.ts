@@ -18,7 +18,7 @@ buttonReset.classList.add("filters__button");
 buttonReset.textContent = "Reset filters";
 divResetCopy.appendChild(buttonReset);
 
-const buttonCopy = document.createElement("button");
+export const buttonCopy = document.createElement("button");
 buttonCopy.classList.add("filters__button");
 buttonCopy.textContent = "Copy link";
 divResetCopy.appendChild(buttonCopy);
