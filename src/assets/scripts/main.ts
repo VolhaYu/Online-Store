@@ -39,27 +39,16 @@ const footerFrame = document.createElement("DIV");
 footerFrame.setAttribute("class", "footer-wrapper");
 footer.appendChild(footerFrame);
 
-const usersGithub = document.createElement("DIV");
-usersGithub.setAttribute("class", "users-github");
-footerFrame.appendChild(usersGithub);
-
-const github1 = document.createElement("A");
-github1.setAttribute("class", "github");
-github1.setAttribute("href", "https://github.com/sesychev");
-github1.setAttribute("target", "_blank");
-github1.innerHTML = `<img class="github__img" src="assets/img/GitHub.png" alt="GitHub">`;
-usersGithub.appendChild(github1);
-
 const github2 = document.createElement("A");
 github2.setAttribute("class", "github");
 github2.setAttribute("href", "https://github.com/VolhaYu");
 github2.setAttribute("target", "_blank");
 github2.innerHTML = `<img class="github__img" src="assets/img/GitHub.png" alt="GitHub">`;
-usersGithub.appendChild(github2);
+footerFrame.appendChild(github2);
 
 const year = document.createElement("P");
 year.setAttribute("class", "year");
-year.innerText = `2022`;
+year.innerText = `2023`;
 footerFrame.appendChild(year);
 
 const link = document.createElement("A");
