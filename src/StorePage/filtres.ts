@@ -92,12 +92,12 @@ const wrapMinMaxPrice = document.createElement("div");
 wrapMinMaxPrice.classList.add("wrap-min-max");
 priceDiv.appendChild(wrapMinMaxPrice);
 
-const minPrice = document.createElement("div");
+export const minPrice = document.createElement("div");
 minPrice.classList.add("min-price");
 minPrice.textContent = `$${priceMin}`;
 wrapMinMaxPrice.appendChild(minPrice);
 
-const maxPrice = document.createElement("div");
+export const maxPrice = document.createElement("div");
 maxPrice.classList.add("max-price");
 maxPrice.textContent = `$${priceMax}`;
 wrapMinMaxPrice.appendChild(maxPrice);
@@ -106,20 +106,20 @@ const rangeContainerPrice = document.createElement("div");
 rangeContainerPrice.classList.add("range-container");
 priceDiv.appendChild(rangeContainerPrice);
 
-const inputRangeMinPrice = document.createElement("input");
+export const inputRangeMinPrice = document.createElement("input");
 inputRangeMinPrice.classList.add("range", "min-range-price");
 inputRangeMinPrice.setAttribute("type", "range");
-inputRangeMinPrice.setAttribute("min", "0");
-inputRangeMinPrice.setAttribute("max", "100");
-inputRangeMinPrice.setAttribute("value", "0");
+inputRangeMinPrice.setAttribute("min", `${priceMin}`);
+inputRangeMinPrice.setAttribute("max", `${priceMax}`);
+inputRangeMinPrice.setAttribute("value", `${priceMin}`);
 rangeContainerPrice.appendChild(inputRangeMinPrice);
 
-const inputRangeMaxPrice = document.createElement("input");
+export const inputRangeMaxPrice = document.createElement("input");
 inputRangeMaxPrice.classList.add("range", "max-range-price");
 inputRangeMaxPrice.setAttribute("type", "range");
-inputRangeMaxPrice.setAttribute("min", "0");
-inputRangeMaxPrice.setAttribute("max", "100");
-inputRangeMaxPrice.setAttribute("value", "100");
+inputRangeMaxPrice.setAttribute("min", `${priceMin}`);
+inputRangeMaxPrice.setAttribute("max", `${priceMax}`);
+inputRangeMaxPrice.setAttribute("value", `${priceMax}`);
 rangeContainerPrice.appendChild(inputRangeMaxPrice);
 // stock
 const stockDiv = document.createElement("fieldset");
@@ -135,12 +135,12 @@ const wrapMinMaxStock = document.createElement("div");
 wrapMinMaxStock.classList.add("wrap-min-max");
 stockDiv.appendChild(wrapMinMaxStock);
 
-const minStock = document.createElement("div");
+export const minStock = document.createElement("div");
 minStock.classList.add("min-stock");
 minStock.textContent = `${stockMin}`;
 wrapMinMaxStock.appendChild(minStock);
 
-const maxStock = document.createElement("div");
+export const maxStock = document.createElement("div");
 maxStock.classList.add("max-stock");
 maxStock.textContent = `${stockMax}`;
 wrapMinMaxStock.appendChild(maxStock);
@@ -149,19 +149,19 @@ const rangeContainerStock = document.createElement("div");
 rangeContainerStock.classList.add("range-container");
 stockDiv.appendChild(rangeContainerStock);
 
-const inputRangeMinStock = document.createElement("input");
+export const inputRangeMinStock = document.createElement("input");
 inputRangeMinStock.setAttribute("type", "range");
-inputRangeMinStock.setAttribute("min", "0");
-inputRangeMinStock.setAttribute("max", "100");
-inputRangeMinStock.setAttribute("value", "0");
+inputRangeMinStock.setAttribute("min", `${stockMin}`);
+inputRangeMinStock.setAttribute("max", `${stockMax}`);
+inputRangeMinStock.setAttribute("value", `${stockMin}`);
 inputRangeMinStock.classList.add("range", "min-range-stock");
 rangeContainerStock.appendChild(inputRangeMinStock);
 
-const inputRangeMaxStock = document.createElement("input");
+export const inputRangeMaxStock = document.createElement("input");
 inputRangeMaxStock.setAttribute("type", "range");
-inputRangeMaxStock.setAttribute("min", "0");
-inputRangeMaxStock.setAttribute("max", "100");
-inputRangeMaxStock.setAttribute("value", "100");
+inputRangeMaxStock.setAttribute("min", `${stockMin}`);
+inputRangeMaxStock.setAttribute("max", `${stockMax}`);
+inputRangeMaxStock.setAttribute("value", `${stockMax}`);
 inputRangeMaxStock.classList.add("range", "max-range-stock");
 rangeContainerStock.appendChild(inputRangeMaxStock);
 

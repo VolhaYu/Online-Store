@@ -1,5 +1,5 @@
 import { select } from './products';
-import { buttonReset, buttonCopy } from './filtres';
+import * as components from './filtres';
 
 const items = document.getElementsByClassName("card-product") as HTMLCollectionOf<HTMLElement>;
 
@@ -73,6 +73,7 @@ Array.from(checkboxes).forEach((checkbox) => checkbox.addEventListener("change",
     }
     showFoundProduct();
   });
+  showRange();  
   console.log("filter1:", filter1);
 }));
 
@@ -93,36 +94,113 @@ document.querySelector(".input-search")?.addEventListener("input", (event) => {
     }
   });
   showFoundProduct();
+  showRange(); 
 });
 
-buttonReset.addEventListener("click", () => {
-  const cards = document.querySelectorAll<HTMLElement>(".card-product");
-  Array.from(cards).forEach((card) => {
-    card.style.display = "flex";
-    filter1.clear();
-    const input = document.querySelectorAll("input[type=checkbox]") as NodeListOf<HTMLInputElement>;
-    input.forEach(el => {
-      el.checked = false;
+function priceFilter() {
+  components.inputRangeMinPrice.addEventListener('change', () => {
+    console.log('change', components.inputRangeMinPrice.value);
+    Array.from(cards).forEach(card => {
+      if((card.dataset.price as string) >= components.inputRangeMinPrice.value) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
     });
+    components.minPrice.textContent = `$${components.inputRangeMinPrice.value}`;
+    showFoundProduct();    
   });
-  const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-id")) - Number(b.getAttribute("data-id")));
-  sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
-  const sort = document.querySelector('.select') as HTMLSelectElement;
-  sort.value = sort.options[0].textContent as string;
-  (document.querySelector(".input-search") as HTMLInputElement).value = '';
-  showFoundProduct();
-});
+  components.inputRangeMaxPrice.addEventListener('change', () => {
+    console.log('change', components.inputRangeMaxPrice.value);
+    Array.from(cards).forEach(card => {
+      if((card.dataset.price as string) <= components.inputRangeMaxPrice.value) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+    components.maxPrice.textContent = `$${components.inputRangeMaxPrice.value}`;
+    showFoundProduct();
+  });
+}
+priceFilter();
+
+function stockFilter() {
+  components.inputRangeMinStock.addEventListener('change', () => {
+    Array.from(cards).forEach(card => {
+      if((card.dataset.stock as string) >= components.inputRangeMinStock.value) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+    components.minStock.textContent = `${components.inputRangeMinStock.value}`;
+    showFoundProduct();
+  });
+  components.inputRangeMaxStock.addEventListener('change', () => {
+    Array.from(cards).forEach(card => {
+      if((card.dataset.stock as string) <= components.inputRangeMaxStock.value) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+    components.maxStock.textContent = `${components.inputRangeMaxStock.value}`;
+    showFoundProduct();
+  });
+}
+stockFilter();
+
+function showRange() {
+  const filter = Array.from(cards).filter(card => card.style.display === "flex");
+  const arrPrice: number[] = [];
+  const arrStock: number[] = [];
+
+  filter.forEach(card => {
+    arrPrice.push(Number(card.dataset.price));
+    arrStock.push(Number(card.dataset.stock));
+  });
+  components.inputRangeMinPrice.value = `${Math.min(...arrPrice)}`;
+  components.inputRangeMaxPrice.value = `${Math.max(...arrPrice)}`;
+  components.minPrice.textContent = `$${Math.min(...arrPrice)}`;
+  components.maxPrice.textContent = `$${Math.max(...arrPrice)}`;
+  components.inputRangeMinStock.value = `${Math.min(...arrStock)}`;
+  components.inputRangeMaxStock.value = `${Math.max(...arrStock)}`;
+  components.minStock.textContent = `${Math.min(...arrStock)}`;
+  components.maxStock.textContent = `${Math.max(...arrStock)}`;
+}
 
 function showFoundProduct() {
   const foundProduct = document.querySelector(".found-product");
   found = Array.from(cards).filter(card => card.style.display === "flex").length;
   if (foundProduct != undefined) foundProduct.textContent = `Found: ${found} pcs`;
 }
+function resetFiltres() {
+  components.buttonReset.addEventListener("click", () => {
+    const cards = document.querySelectorAll<HTMLElement>(".card-product");
+    Array.from(cards).forEach((card) => {
+      card.style.display = "flex";
+      filter1.clear();
+      const input = document.querySelectorAll("input[type=checkbox]") as NodeListOf<HTMLInputElement>;
+      input.forEach(el => {
+        el.checked = false;
+      });
+    });
+    const sorted = Array.from(items).sort((a: Element, b: Element) => Number(a.getAttribute("data-id")) - Number(b.getAttribute("data-id")));
+    sorted.forEach((item) => document.querySelector(".cards-products")?.appendChild(item));
+    const sort = document.querySelector('.select') as HTMLSelectElement;
+    sort.value = sort.options[0].textContent as string;
+    (document.querySelector(".input-search") as HTMLInputElement).value = '';
+    showFoundProduct();
+    showRange(); 
+  });
+}
+resetFiltres();
 
 function copyUrl() {
-  buttonCopy.addEventListener('click', () => {
-    buttonCopy.style.background='#C6C6C6';
-    setTimeout(() => buttonCopy.style.background='buttonface', 500);
+  components.buttonCopy.addEventListener('click', () => {
+    components.buttonCopy.style.background='#C6C6C6';
+    setTimeout(() => components.buttonCopy.style.background='buttonface', 500);
     const copy = window.location.href;
     console.log(copy);
     const tmp   = document.createElement('INPUT') as HTMLInputElement, 
