@@ -2,6 +2,7 @@ import './cartPage.css';
 import { products } from '../assets/data/productsData';
 import { objCart, cartCounter, headerTotal, buttunToCart } from '../cartPageWork';
 import { addToCartButton } from '../descriptionPage/productDescription';
+import { showPopUp } from '../PopUp/popUpLogic';
 
 const fragmentCartPage = document.createDocumentFragment();
 export const divCartPage = document.createElement('div');
@@ -49,6 +50,10 @@ const buttonBuy = document.createElement('button');
 buttonBuy.classList.add('button-buy');
 buttonBuy.textContent = 'buy now';
 totalSum.appendChild(buttonBuy);
+
+export function getCartPage() {
+  showPopUp(buttonBuy);
+}
 
 export function showInCart(n: number, count: number, totalcount: number) {
   const inCartItem = document.createElement('div');

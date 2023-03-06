@@ -14,3 +14,7 @@ import "./assets/data/productsData";
 import "./assets/scripts/findData";
 import "./assets/scripts/pageSwitching";
 import "./cartPageWork";
+
+import './PopUp/PopUp';
+import './PopUp/popUpLogic';
+

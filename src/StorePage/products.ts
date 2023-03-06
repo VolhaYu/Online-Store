@@ -102,6 +102,8 @@ export function setProductsCard(items: Array<Products>) {
     cardProduct.dataset.rating = product.rating.toString();
     cardProduct.dataset.brand = product.brand.toUpperCase();
     cardProduct.dataset.category = product.category.toUpperCase();
+    cardProduct.dataset.stock = product.stock.toString();
+
     cardsProducts.appendChild(cardProduct);
 
     const productImg = document.createElement("div");

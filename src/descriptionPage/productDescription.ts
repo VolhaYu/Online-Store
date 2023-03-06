@@ -3,6 +3,7 @@ import { products } from "../assets/data/productsData";
 import { divStorePage } from "../StorePage/filtres";
 import { getCartCounterDescription, buttunToCart } from "../cartPageWork";
 import { productImg } from "../StorePage/products";
+import { showPopUp } from "../PopUp/popUpLogic";
 
 const fragmentDescriptiontPage = document.createDocumentFragment();
 export const divDescriptiontPage = document.createElement("div");
@@ -99,7 +100,7 @@ const priceInfo = document.createElement("p");
 priceInfo.classList.add("price-info");
 addToCart.appendChild(priceInfo);
 
-export const addToCartButton: HTMLElement = document.createElement("button");
+export const addToCartButton: HTMLButtonElement = document.createElement("button");
 addToCartButton.classList.add("add-to-cart__button");
 addToCart.appendChild(addToCartButton);
 
@@ -140,6 +141,7 @@ function getProductInfo() {
       getSliderImage(i);
       bigImg();
       getCartCounterDescription(i);
+      showPopUp(buyNowButton);
       return products[i];
     });
   }
