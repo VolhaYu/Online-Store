@@ -16,3 +16,5 @@ import "./assets/scripts/pageSwitching";
 import "./cartPageWork";
 
 import './PopUp/PopUp';
+import './PopUp/popUpLogic';
+

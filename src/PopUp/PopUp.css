@@ -6,9 +6,16 @@
   width: 100%;
   height: 100%;
   background: rgba(13,13,13,.8);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
+}
+.pop-up-active {
+  display: flex;
+}
+.pop-up-text {
+  font-size: 30px;
+  color: #FFFFFF;
 }
 .pop-up-content {
   position: absolute;
@@ -85,6 +92,12 @@
   display: block;
   margin: 20px auto 30px;
   cursor: pointer;
+}
+.input:invalid {
+  border: 1px solid red;
+}
+.input:valid {
+  border: 1px solid green;
 }
 
 input::-webkit-outer-spin-button,

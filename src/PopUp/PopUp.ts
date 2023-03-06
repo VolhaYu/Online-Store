@@ -4,7 +4,7 @@ export const popUp = () => `
   <div class="pop-up">
     <div class="pop-up-content">
       <div class="pop-up-container">
-        <form action="#">
+        <form class="form" action="#">
           <div class="wrap-personal">
             <h3 class="h3-pop-up">Personal details</h3>
             <input class="input personal__input-text" type="text" placeholder="Name" required>              
@@ -25,7 +25,7 @@ export const popUp = () => `
                 <input class="input input-number wrap-input__number" type="number" placeholder="Valid Thru" required>
               </label>
               <label class="label"> CVV:
-                <input class="input input-number wrap-input__number" type="number" placeholder="Code" required>
+                <input class="input input-number wrap-input__number" type="number" placeholder="Code" maxLength="3" required>
               </label>
             </div>
           </div> 
