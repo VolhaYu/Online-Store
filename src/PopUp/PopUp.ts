@@ -17,15 +17,15 @@ export const popUp = () => `
             <div class="wrap-input-number-card">
               <img class="credit-card__img" src="assets/svg/2443.webp" alt="img">
               <label class="label-card-number">
-                <input class="input input-number input-card-number" type="number" placeholder="Card number" required>
+                <input class="input input-number input-card-number" type="text" placeholder="Card number" maxLength="16" pattern="[0-9]{16}" required>
               </label>        
             </div>
             <div class="wrap-input">
               <label class="label"> Valid:
-                <input class="input input-number wrap-input__number" type="number" placeholder="Valid Thru" required>
+                <input class="input input-number wrap-input__number" type="text" placeholder="Valid Thru" maxLength="4" pattern="[0-9]{4}" required>
               </label>
               <label class="label"> CVV:
-                <input class="input input-number wrap-input__number" type="number" placeholder="Code" maxLength="3" required>
+                <input class="input input-number wrap-input__number" type="text" placeholder="Code" maxLength="3" pattern="[0-9]{3}" required>
               </label>
             </div>
           </div> 
